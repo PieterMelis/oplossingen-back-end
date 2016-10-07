@@ -11,9 +11,9 @@ $dierenLijst2[7] = 'haai';
 $dierenLijst2[8] = 'slang';
 $dierenLijst2[9] = 'tijger';
 
-$voertuigenLijst = array(	'landvoertuigen' 	=> 	array('Vespa','fiets'),
-                          'watervoertuigen' => 	array('surfplank','vlot',),
-                          'luchtvoertuigen' => 	array() );
+$voertuigenLijst = array(	'landvoertuigen' 	=> 	array('Vespa','auto'),
+                          'watervoertuigen' => 	array('duikboot'),
+                          'luchtvoertuigen' => 	array('luchtballon','vliegtuig') );
  ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,7 @@ $voertuigenLijst = array(	'landvoertuigen' 	=> 	array('Vespa','fiets'),
     <title></title>
   </head>
   <body>
+    <h1>arrays basis deel1</h1>
     <?php var_dump($dierenLijst1)  ?>
     <?php var_dump($voertuigenLijst)  ?>
   </body>
