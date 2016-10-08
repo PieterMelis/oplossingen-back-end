@@ -12,7 +12,7 @@ $dierenLijst  = array_merge($arrayDieren,$zoogdieren);
 
 
 
-if ($teZoekenDier == true) {
+if ($teZoekenDier) {
   $tekst = $dier." zit in de arrayDieren";
 } else {
   $tekst = $dier." zit niet in de arrayDieren";
