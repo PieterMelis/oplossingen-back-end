@@ -8,10 +8,6 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-      table{
-
-
-      }
       table tr td {
         padding: 10px;
         border: 1px solid black;
