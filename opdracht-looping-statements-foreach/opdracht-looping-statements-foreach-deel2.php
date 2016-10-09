@@ -1,6 +1,6 @@
 <?php
 $tekst = file_get_contents("text-file.txt");
-$a = 0;
+
 $tekst = strtoupper($tekst);
 
  ?>
