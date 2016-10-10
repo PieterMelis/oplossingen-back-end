@@ -72,7 +72,7 @@ $boodschappenlijstje                = array('melk',
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>While deel 2</title>
   </head>
   <body>
     <h1>While deel 2</h1>
