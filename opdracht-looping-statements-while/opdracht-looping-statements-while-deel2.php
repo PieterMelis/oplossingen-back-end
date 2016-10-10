@@ -1,4 +1,5 @@
 <?php
+$i =0;
 $boodschappenlijstje                = array('melk',
                                             'koekjes',
                                             'Martini',
@@ -77,9 +78,10 @@ $boodschappenlijstje                = array('melk',
     <h1>While deel 2</h1>
     <h3>boodschappen </h3>
     <ul>
-      <?php foreach ($boodschappenlijstje as $value): ?>
-         <li> <?= $value ?></li>
-      <?php endforeach ?>
+      <?php while ($i < count($boodschappenlijstje)): ?>
+         <li> <?= $boodschappenlijstje[$i] ?></li>
+         <?php $i++ ?>
+      <?php endwhile ?>
     </ul>
 
   </body>
