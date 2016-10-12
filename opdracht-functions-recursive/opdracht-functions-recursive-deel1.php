@@ -13,14 +13,12 @@
  		{
  			$rente             = floor($beginWaarde * $persMin) ;
       $jaarlijks         = floor($beginWaarde * $pers)  ;
- 			$jaren[i]	     =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
+ 			$jaren[$i]	     =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
 
  			$i++;
+      return $jaren;
  		}
- 		else
- 		{
- 			return $jaren;
- 		}
+
  	}
 
  	$geëfdGeld  	=	100000;
