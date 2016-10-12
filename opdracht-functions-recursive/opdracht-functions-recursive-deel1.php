@@ -3,7 +3,7 @@
 
  	function vraagstuk( $beginWaarde )
  	{
- 		static $i		=	1;
+ 		static $i		=	0;
  		static $jaren	=	array();
     static $pers      = 1.08;
     static $persMin     = 0.08;
@@ -13,10 +13,11 @@
  		{
  			$rente             = floor($beginWaarde * $persMin) ;
       $jaarlijks         = floor($beginWaarde * $pers)  ;
- 			$jaren[$i]	     =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
+ 			$jaren[$i]	       =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
 
  			$i++;
       return $jaren;
+      return vraagstuk( $beginWaarde );
  		}
 
  	}
