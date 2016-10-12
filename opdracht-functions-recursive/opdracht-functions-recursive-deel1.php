@@ -30,10 +30,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>opdracht-functions-recursive deel2</title>
+    <title>opdracht-functions-recursive deel1</title>
   </head>
   <body>
-    <h1>functions-recursive deel2</h1>
+    <h1>functions-recursive deel1</h1>
     <?php foreach($winst as $bedrag): ?>
       <li><?= $bedrag ?></li>
     <?php endforeach ?>
