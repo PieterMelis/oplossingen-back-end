@@ -1,22 +1,21 @@
 
  <?php
 
- 	function vraagstuk( $beginWaarde,$tienjaar )
+ 	function vraagstuk( $beginWaarde )
  	{
  		static $i		=	1;
  		static $jaren	=	array();
     static $pers      = 1.08;
     static $persMin     = 0.08;
+    $tienjaar   = 10;
 
- 		if ( $i <= $tienjaar )
+ 		if ( $i <=  $tienjaar)
  		{
  			$rente             = floor($beginWaarde * $persMin) ;
       $jaarlijks         = floor($beginWaarde * $pers)  ;
- 			$jaren[ $i ]	     =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
+ 			$jaren[i]	     =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
 
  			$i++;
-
- 			return vraagstuk( $jaarlijks,  $tienjaar );
  		}
  		else
  		{
@@ -26,9 +25,7 @@
 
  	$geëfdGeld  	=	100000;
 
- 	$aantalJaar		=	10;
-
- 	$winst = vraagstuk( $geëfdGeld ,  $aantalJaar );
+ 	$winst = vraagstuk( $geëfdGeld );
  ?>
  <!DOCTYPE html>
 <html>
