@@ -3,10 +3,14 @@
     $rijen = 10;
     $kolommen = 10;
 
+    $resultaat = array();
+
     for ($i=0; $i < $rijen+1; $i++){
+      $tempArray = array();
       for ($a=0; $a < $kolommen+1; $a++){
-        $tot[] = $i * $a;
+        $tempArray[] = $i * $a;
       }
+      $resultaat[$i] = $tempArray;
 
     }
 
@@ -22,9 +26,17 @@
     <h1>For deel 3</h1>
     <ul>
 
-         <?php foreach ($tot as $key => $value): ?>
-            <li>[ <?= $key ?>  ]  => <?= $value ?></li>
-         <?php endforeach ?>
+      <?php foreach ($resultaat as $tafel => $tafelResultaten): ?>
+        <?= $tafel ?>
+        <ul>
+          <?php foreach ($tafelResultaten as $key => $value): ?>
+             <li>[ <?= $key ?>  ]  => <?= $value ?></li>
+          <?php endforeach ?>
+        </ul>
+
+      <?php endforeach ?>
+
+
 
 
     </ul>

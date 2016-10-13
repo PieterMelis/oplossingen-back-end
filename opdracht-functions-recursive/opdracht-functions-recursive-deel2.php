@@ -3,12 +3,12 @@
 
  	function vraagstuk( $jaar )
  	{
- 		static $jaar		=	1;
- 		static $jaren	=	array();
-    static $pers      = 1.08;
-    static $persMin     = 0.08;
-    $tienjaar   = 10;
-    static 	$geëfdGeld  	=	100000;
+ 		static $jaar		   = 1;
+ 		static $jaren	     =	array();
+    static $pers       = 1.08;
+    static $persMin    = 0.08;
+    $tienjaar          = 10;
+    static 	$geëfdGeld = 100000;
 
  		if ( $jaar <=  $tienjaar)
  		{
@@ -31,6 +31,7 @@
   </head>
   <body>
     <h1>functions-recursive deel1</h1>
+
     <p><?=  vraagstuk( 10 ); ?></p>
   </body>
 </html>
