@@ -1,30 +1,33 @@
 
  <?php
 
- 	function vraagstuk( $beginWaarde )
+ 	function vraagstuk( $jaar )
  	{
- 		static $i		=	0;
+ 		static $jaar		=	1;
  		static $jaren	=	array();
     static $pers      = 1.08;
     static $persMin     = 0.08;
     $tienjaar   = 10;
+    static 	$geëfdGeld  	=	100000;
 
- 		if ( $i <=  $tienjaar)
+ 		if ( $jaar <=  $tienjaar)
  		{
- 			$rente             = floor($beginWaarde * $persMin) ;
-      $jaarlijks         = floor($beginWaarde * $pers)  ;
- 			$jaren[$i]	       =	"Het bedrag is nu ".$jaarlijks." euro ( waarvan ".$rente ." rente)";
+ 			$rente             = floor($geëfdGeld * $persMin) ;
+      $geëfdGeld         = floor($geëfdGeld * $pers)  ;
+ 			$jaren[]	       =	"Het bedrag is nu ".$geëfdGeld." euro ( waarvan ".$rente ." rente)";
 
- 			$i++;
-      return $jaren;
-      return vraagstuk( $beginWaarde );
+ 			vraagstuk(++$jaar);
+
+
+ 		}else {
+ 		  return $jaren;
  		}
 
  	}
 
- 	$geëfdGeld  	=	100000;
 
- 	$winst = vraagstuk( $geëfdGeld );
+
+ 	$winst = vraagstuk( 10 );
  ?>
  <!DOCTYPE html>
 <html>
@@ -37,5 +40,8 @@
     <?php foreach($winst as $bedrag): ?>
       <li><?= $bedrag ?></li>
     <?php endforeach ?>
+    <pre><?php print_r(vraagstuk( $jaar )) ?></pre>
+
+
   </body>
 </html>
