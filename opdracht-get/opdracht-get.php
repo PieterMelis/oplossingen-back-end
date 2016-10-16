@@ -19,6 +19,11 @@ $artikels = array(
           'afbeeldingBeschrijving' => 'Kuifje',
         )
 );
+
+
+var_dump( $_GET );
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,21 +47,26 @@ $artikels = array(
         max-width: 100%;
 }
     </style>
+    <?php if (!$_GET): ?>
+      <h1>De krant van vandaag</h1>
+      <section class="articles">
+        <?php foreach ($artikels as $key => $value): ?>
 
-    <h1>De krant van vandaag</h1>
-    <section class="articles">
-      <?php foreach ($artikels as $key => $value): ?>
+
+        <div class="art">
+          <h3><?= $value['titel']?></h3>
+          <hr>
+          <h5><?= $value['datum']?></h5>
+          <img src="<?= $value['afbeelding']?>" alt="<?= $value['afbeeldingBeschrijving']?>" />
+          <p><?= $value['inhoud']?></p>
+          <a href="opdracht-get.php?id=<?= $key ?>"><p> Lees meer> </p></a>
+        </div>
+        <?php endforeach; ?>
+      </section>
+    <?php elseif($_GET["id"]==0): ?>
+
+    <?php endif; ?>
 
 
-      <div class="art">
-        <h3><?= $value['titel']?></h3>
-        <hr>
-        <h5><?= $value['datum']?></h5>
-        <img src="<?= $value['afbeelding']?>" alt="<?= $value['afbeeldingBeschrijving']?>" />
-        <p><?= $value['inhoud']?></p>
-        <a href="opdracht-get.php?id=<?= $key ?>"><p> Lees meer> </p></a>
-      </div>
-      <?php endforeach; ?>
-    </section>
   </body>
 </html>
