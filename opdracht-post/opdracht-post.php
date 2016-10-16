@@ -30,7 +30,7 @@ if($_POST['username'] == $username && $_POST['password'] == $password){
 	<h1>Inloggen</h1>
 
 
-	<form action="oplossing-post.php" method="POST">
+	<form action="opdracht-post.php" method="POST">
 
 				<label for="username">Gebruikersnaam</label>
 				<input type="text" name="username" id="username">

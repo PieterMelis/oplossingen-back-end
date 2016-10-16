@@ -30,6 +30,7 @@ var_dump( $_GET );
   <head>
     <meta charset="utf-8">
     <title>opdracht-get</title>
+    
   </head>
   <body>
     <style media="screen">
