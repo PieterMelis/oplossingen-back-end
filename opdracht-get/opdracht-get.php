@@ -10,7 +10,7 @@ $artikels = array(
           'afbeeldingBeschrijving' => 'Mark Zuckerberg'
         ),
     array('titel' => 'Nieuwe studie toont aan dat er 40 jaar geleden waarschijnlijk tóch leven werd gevonden op Mars',
-          'datum' => '9 december 2013',
+          'datum' => 'DO 20/10/2016 - 04:33',
           'inhoud' => 'De nieuwe studie werd uitgevoerd door Gilbert Levin van de universiteit van Arizona en Patricia Ann Straat van het Nationaal Gezondheidsinstituut in Bethesda, Maryland. Allebei waren ze ook betrokken bij de oorspronkelijke missie van de Vikingsatellieten en hun landers in 1976.
                       Het was toen de meest ambitieuze poging van de wetenschap om de rode planeet te verkennen.
                       Vikings
@@ -29,7 +29,7 @@ $artikels = array(
           'afbeeldingBeschrijving' => 'twee appartements­blokken',
         ),
     array('titel' => 'Ruim helft Europeanen kampt met overgewicht',
-          'datum' => '9 december 2013',
+          'datum' => 'DO 20/10/2016 - 14:39',
           'inhoud' => 'In de Europese Unie heeft meer dan de helft (51,6 procent) van de volwassenen overgewicht. Uit een rapport van het Europese statistiekbureau Eurostat, dat zich baseert op cijfers uit 2014, blijkt zelfs dat bijna een op de zes 18-plussers kampt met obesitas (Body Mass Index van 30 of meer). België hoort bij de landen met het laagste aandeel obesen.
                       In 2014 had 46,1 procent van de volwassen Europeanen een normaal gewicht, terwijl 35,7 procent met pre-obesitas (BMI tussen 25 en 30) kampte en 15,9 procent met obesitas. Slechts 2,3 procent van de 18-plussers had ondergewicht (BMI van minder dan 18,5).
 
@@ -53,7 +53,7 @@ if ( isset ( $_GET['id'] ) )
 
   if ( array_key_exists( $id , $artikels ) )
   {
-    $artikels 			= 	array( $artikels[$id] );
+    $artikels= array( $artikels[$id] );
     $inArtikel	=	true;
   }
   else
@@ -61,9 +61,6 @@ if ( isset ( $_GET['id'] ) )
     $inArtikel	=	true;
   }
 }
-
-$notInartikel = false;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,7 +85,6 @@ $notInartikel = false;
         max-width: 100%;
 }
     </style>
-	<?php if ( !$notInartikel ): ?>
       <h1>De krant van vandaag</h1>
       <section class="articles">
         <?php foreach ($artikels as $key => $value): ?>
@@ -102,7 +98,7 @@ $notInartikel = false;
 
 
           <?php if (!$inArtikel): ?>
-            <?php echo substr( $value['inhoud'], 0, 50 ). "..." ?>
+            <?php echo substr( $value['inhoud'], 0, 100 ). "..." ?>
             <a href="opdracht-get.php?id=<?= $key ?>"><p> Lees meer> </p></a>
             <?php else: ?>
               <?php echo $value['inhoud'] ?>
@@ -111,9 +107,7 @@ $notInartikel = false;
         </div>
         <?php endforeach; ?>
       </section>
-    <?php else: ?>
-      <p>Het artikel <?php echo $id ?> is niet gevonden.</p>
-    <?php endif ?>
+
 
 
 

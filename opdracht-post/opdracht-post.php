@@ -5,11 +5,12 @@ $message = " ";
 
 
 if(isset($_POST['submit'])){
-if($_POST['username'] == $username && $_POST['password'] == $password){
-  $message="welkom " . $username;
-}else{
-  $message="Er ging iets mis bij het inloggen, probeer opnieuw";
-}
+  
+  if($_POST['username'] == $username && $_POST['password'] == $password){
+    $message="welkom " . $username;
+  }else{
+    $message="Er ging iets mis bij het inloggen, probeer opnieuw";
+  }
 }
 ?>
 
