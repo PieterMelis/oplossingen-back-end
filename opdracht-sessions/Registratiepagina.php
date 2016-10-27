@@ -16,6 +16,8 @@
     	}
     }
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,11 +36,11 @@
       <ul>
           <li>
             <label for="email">e-mail</label>
-            <input  class="<?php echo $emailActive ?> " type="text" name="email" id="email" value="<?php echo $_SESSION["email"] ?>">
+            <input  class="<?php echo $emailActive ?> " type="text" name="email" id="email" value="<?php if (isset($_SESSION["email"])) { echo $_SESSION["email"]; } ?>">
           </li>
           <li>
             <label for="nickname">nickname</label>
-            <input class="<?php echo $nicknameActive ?> type="text" name="nickname" id="nickname" value="<?php echo $_SESSION["nickname"] ?>">
+            <input class="<?php echo $nicknameActive ?>" type="text" name="nickname" id="nickname" value="<?php if (isset($_SESSION["nickname"])) { echo $_SESSION["nickname"]; } ?>">
           </li>
           </ul>
             <input type="submit" name="submit" value="Volgende">

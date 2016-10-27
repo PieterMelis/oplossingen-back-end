@@ -29,14 +29,14 @@
   <body>
     <h1>Overzichtspagina</h1>
     <ul>
-      <li><p>Email : <?php echo $_SESSION["email"] ?> <a href="Registratiepagina.php?wijzig=email"> | wijzig</a></p></li>
-      <li><p>Nickname : <?php echo $_SESSION["nickname"] ?> <a href="Registratiepagina.php?wijzig=nickname"> | wijzig</a></p></li>
+      <li><p>Email :    <?php if (isset($_SESSION["email"])) { echo $_SESSION["email"]; } ?>   |  <a href="Registratiepagina.php?wijzig=email">wijzig</a></p></li>
+      <li><p>Nickname : <?php if (isset($_SESSION["nickname"])) { echo $_SESSION["nickname"]; } ?>    |  <a href="Registratiepagina.php?wijzig=nickname">wijzig</a></p></li>
     </ul>
     <ul>
-      <li><p>Straat : <?php echo $_SESSION["straat"] ?> <a href="Adrespagina.php?wijzig=straat"> | wijzig</a></p></li>
-      <li><p>Nummer : <?php echo $_SESSION["nummer"] ?> <a href="Adrespagina.php?wijzig=nummer"> | wijzig</a></p></li>
-      <li><p>Gemeente : <?php echo $_SESSION["gemeente"] ?> <a href="Adrespagina.php?wijzig=gemeente"> | wijzig</a></p></li>
-      <li><p>Postcode : <?php echo $_SESSION["postcode"] ?> <a href="Adrespagina.php?wijzig=postcode"> | wijzig</a></p></li>
+      <li><p>Straat :   <?php echo $_SESSION["straat"]    ?>    |  <a href="Adrespagina.php?wijzig=straat">wijzig</a></p></li>
+      <li><p>Nummer :   <?php echo $_SESSION["nummer"]    ?>    |  <a href="Adrespagina.php?wijzig=nummer">wijzig</a></p></li>
+      <li><p>Gemeente : <?php echo $_SESSION["gemeente"]  ?>    |  <a href="Adrespagina.php?wijzig=gemeente">wijzig</a></p></li>
+      <li><p>Postcode : <?php echo $_SESSION["postcode"]  ?>    |  <a href="Adrespagina.php?wijzig=postcode">wijzig</a></p></li>
     </ul>
   </body>
 </html>

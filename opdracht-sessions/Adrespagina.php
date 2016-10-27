@@ -36,10 +36,11 @@ if(isset($_GET["wijzig"]))
 
 if (isset($_GET["destroy"]))
 {
-  session_destroy();
+  if ($_GET["destroy"]==true)
+  {
+    session_destroy();
+  }
 }
-
-
  ?>
 <!DOCTYPE html>
 <html>
@@ -55,8 +56,8 @@ if (isset($_GET["destroy"]))
     <h1>Registratiegegevens</h1>
 
     <ul>
-        <li><?php echo $_SESSION["email"] ?></li>
-        <li><?php echo $_SESSION["nickname"] ?></li>
+        <li><?php if (isset($_SESSION["email"])) { echo $_SESSION["email"]; } ?></li>
+        <li><?php if (isset($_SESSION["nickname"])) { echo $_SESSION["nickname"]; } ?></li>
     </ul>
 
     <h1>Deel 2: adres</h1>
@@ -82,7 +83,7 @@ if (isset($_GET["destroy"]))
         <input type="submit" value="Volgende"  name="submit">
 
 
-        <a href="Registratiepagina.php?destroy=true"  name="destroy" >Destroy Session</a>
+        <a href="Adrespagina.php?destroy=true"  name="destroy" >Destroy Session</a>
     </form>
   </body>
 </html>
