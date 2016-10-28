@@ -17,7 +17,7 @@ En denk er aan, blijven volharden! Het groene vinkje is in zicht.
 Neem deze tekst over in je eigen document en schrijf onder deze tekst wat hierboven werd gevraagd.
 
 ===
-[![](https://pbs.twimg.com/profile_images/575020938699235328/UNfSqZP4.jpeg  =250px)](https://github.com/PieterMelis)
+[![drawing](https://pbs.twimg.com/profile_images/575020938699235328/UNfSqZP4.jpeg)](https://github.com/PieterMelis)
 ___
 
 
