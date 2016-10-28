@@ -1,6 +1,6 @@
 #Motivatie
 
-Niet slecht! Je komt steeds dichterbij.
+**Niet slecht! Je komt steeds dichterbij.
 
 Het motivatie-bestand moet de volgende dingen bevatten
 - een H2 met naam 'Waarom ik voor MT' heb gekozen
@@ -14,7 +14,7 @@ Nog een extra uitdaging: schrijf dit document in MarkDown. Jup, opnieuw iets bij
 
 En denk er aan, blijven volharden! Het groene vinkje is in zicht.
 
-Neem deze tekst over in je eigen document en schrijf onder deze tekst wat hierboven werd gevraagd.
+Neem deze tekst over in je eigen document en schrijf onder deze tekst wat hierboven werd gevraagd.**
 
 
 
