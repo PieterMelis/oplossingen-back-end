@@ -2,6 +2,8 @@
   session_start();
 
 
+
+
   $emailActive="";
   $nicknameActive="";
     if(isset($_GET["wijzig"]))
@@ -16,6 +18,15 @@
     	}
     }
 
+
+
+    if (isset($_GET["destroy"]))
+    {
+      if ($_GET["destroy"]==true)
+      {
+        session_destroy();
+      }
+    }
 
 
 ?>

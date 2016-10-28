@@ -34,13 +34,7 @@ if(isset($_GET["wijzig"]))
   }
 }
 
-if (isset($_GET["destroy"]))
-{
-  if ($_GET["destroy"]==true)
-  {
-    session_destroy();
-  }
-}
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -83,7 +77,7 @@ if (isset($_GET["destroy"]))
         <input type="submit" value="Volgende"  name="submit">
 
 
-        <a href="Adrespagina.php?destroy=true"  name="destroy" >Destroy Session</a>
+        <a href="Registratiepagina.php?destroy=true"  name="destroy" >Destroy Session</a>
     </form>
   </body>
 </html>
