@@ -17,6 +17,9 @@ En denk er aan, blijven volharden! Het groene vinkje is in zicht.
 Neem deze tekst over in je eigen document en schrijf onder deze tekst wat hierboven werd gevraagd.
 
 ===
+===
+
+
 ##Waarom ik voor MT heb gekozen
 
 *Toen ik het middelbaar had gedaan had ik nog altijd geen middelbaar diploma door omstandigheden die in mijn leven zijn gebeurd. Ik was vastbesloten om mijn middelbaar diploma alsnog te halen in het tweedekansonderwijs en volwassenenonderwijs. Ik moest naast de theoretische vakken ook een beroepsopleiding kiezen. En ik koos voor webdesign omdat het mij het meeste aansprak. Ik was op dit moment absoluut niet aan het denken om verder te studeren maar een vriend die toen in mijn klas zat vertelde over de opleiding MT. Ik ben samen met hem naar een opendeurdag geweest. Alles wat ik daar heb gezien sprak me enorm aan. Met web en technologie heb je ongelofelijk veel mogelijkheden. Ik ben er zeker van dat communicatie door middel van technologie de toekomst is. En ik wil daar heel graag deel van uitmaken.*  
