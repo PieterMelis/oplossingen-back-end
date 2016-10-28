@@ -20,7 +20,7 @@ En denk er aan, blijven volharden! Het groene vinkje is in zicht.
 Neem deze tekst over in je eigen document en schrijf onder deze tekst wat hierboven werd gevraagd.
 
 ===
-___
+
 
 
 
@@ -30,8 +30,8 @@ ___
 
 ##Feedback voor de cursus web backend
 
-**`Positief:`**
+**Positief:**
 *De opdrachten die je kan maken daar kan je heel veel uit leren. Een duidelijke uitleg die uitnodigt om de uitdaging aan te gaan. Doordat de oplossingen erbij zit kan je zelfstandiger werken als je voor een langere tijd vast zit bij een oefening.*
 
-**`Negatief:`**
+**Negatief:**
 *De feedbackmomenten zijn soms te kort voor zo’n grote groep. Maar daar ben je zelf al naar oplossingen aan het zoeken.*
