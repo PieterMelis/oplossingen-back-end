@@ -1,4 +1,4 @@
-[![](https://praktijk.kdg.be/kdglogo.png)](https://github.com/PieterMelis)
+[![](http://www.kdglanparty.be/wp-content/uploads/2015/11/kdg.jpg)](https://github.com/PieterMelis)
 
 
 #Motivatie
