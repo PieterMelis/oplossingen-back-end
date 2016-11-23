@@ -1,0 +1,22 @@
+<section>
+  <div class="container">
+    <h2>Nieuws</h2>
+    <hr>
+    <?php foreach( $artikels as $key => $val )  : ?>
+ <div class="text">
+   <h3><?php echo $val["title"]; ?></h3>
+   <p><?php echo $val["text"]; ?></p>
+   <p>
+     Kernwoorden:
+     <?php foreach( $val["tags"] as $values ) : ?>
+      <?= $values . "," ?>
+     <?php endforeach; ?>
+   </p>
+ </div>
+ <?php endforeach; ?>
+
+
+
+    
+</div>
+</section>
