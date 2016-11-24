@@ -41,7 +41,7 @@ $percent	=	new Percent(150, 100);
           Hundred
         </td>
         <td>
-          <?php echo $percent->formatNumber($percent->hundred); ?>
+          <?php echo $percent->formatNumber($percent->hundred); ?>%
         </td>
       </tr>
       <tr>
