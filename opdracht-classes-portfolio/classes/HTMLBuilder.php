@@ -11,21 +11,23 @@ class HTMLBuilder
     $this->header = $header;
     $this->body   = $body;
     $this->footer = $footer;
+
   }
 
   public function buildHeader()
   {
-    # code...
+    include glob('../css/*.css');
+    include 'html/'.$this->header;
   }
 
   public function buildBody()
   {
-    # code...
+    include 'html/'.$this->body;
   }
 
   public function buildFooter()
   {
-    # code...
+    include 'html/'.$this->footer;
   }
 
 }
