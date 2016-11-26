@@ -16,7 +16,6 @@ class HTMLBuilder
 
   public function buildHeader()
   {
-    include glob('../css/*.css');
     include 'html/'.$this->header;
   }
 
