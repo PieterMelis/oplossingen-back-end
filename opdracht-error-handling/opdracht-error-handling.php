@@ -1,14 +1,31 @@
 <?php
+
+		$message = "";
+
 try {
   if (isset($_POST[ 'submit' ] )) {
     if (isset($_POST[ 'code' ] )) {
-
-    }
+      throw new Exception( 'SUBMIT-ERROR' );
+    }	else
+				{
+					$naam	=	$_POST['text'];
+				}
   }
 
-} catch (Exception $e) {
+} catch (Exception $e) 	{
+	$messageCode = $e->getMessage();
+		$message = "";
+        $createMessage = false;
 
-}
+        switch($messageCode){
+            case 'SUBMIT-ERROR':
+                $message["type"] = "error";
+                break;
+
+
+        }
+	}
+
 
  ?>
 
@@ -21,7 +38,14 @@ try {
    <body>
      <h1>Geef uw kortingscode op</h1>
 
-     <form action="#" method="post">
+     <?php if ( $message ): ?>
+     <div>
+       <?= $message ?>
+     </div>
+   <?php endif ?>
+
+
+     <form method="post">
          <ul>
              <li>
                  <label for="code">Kortingscode</label>
