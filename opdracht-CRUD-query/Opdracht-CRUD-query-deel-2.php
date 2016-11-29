@@ -8,19 +8,29 @@ try
   $bieren	=	array();
   $uno    = 1;
 
-   $queryString = 'SELECT brouwernr as "Aantal", brnaam as "naam" FROM brouwers';
-        $bieren = $db->prepare($queryString);
-        $bieren->execute();
-        $bierArr = array();
-        while ($bier = $bieren->fetch(PDO::FETCH_ASSOC))
+  $queryString = 'SELECT brouwernr, brnaam FROM brouwers';;
+  $brouwers = $db->prepare($queryString);
+  $brouwers->execute();
+  $brouwArr = array();
+  while ($brouwernaam = $brouwers->fetch(PDO::FETCH_ASSOC))
+  {
+      $brouwArr[] = $brouwernaam;
+  }
+
+        if(isset($_GET["brouwernr"]))
         {
-            $bierArr[] = $bier;
+          $brouwer = $_GET["brouwernr"];
+          $brouwerQuery  = 'SELECT bieren.naam FROM bieren WHERE bieren.brouwernr = :brouwernr';
+          $brouwerBieren = $db->prepare($brouwerQuery);
+          $brouwerBieren->bindParam( ':brouwernr', $_GET['brouwernr']);
+          $brouwerBieren->execute();
+          $bieren = array();
+          while ($bier = $brouwerBieren->fetch(PDO::FETCH_ASSOC))
+          {
+              $bieren[] = $bier;
+          }
         }
-        $biermerken = array();
-        foreach($bierArr[1] as $merk => $bier)
-        {
-            $biermerken[] = $merk;
-        }
+
     }
     catch (Exception $e)
     {
@@ -47,26 +57,36 @@ try
 
   <body>
     <?php echo $message?>
+    <h1>Opdracht CRUD query deel 2</h1>
+
+    
+    <form action="Opdracht-CRUD-query-deel-2.php" method="GET">
+      <select name="brouwernr">
+          <?php foreach ($brouwArr as $naam): ?>
+              <option value="<?= $naam['brouwernr'] ?>"><?= $naam['brnaam'] ?></option>
+          <?php endforeach ?>
+      </select>
+    <input type="submit" name="submit" value="Geef alle bieren van deze brouwerij">
+    </form>
     <table>
 
         <thead>
-          <h1>Opdracht CRUD query deel 2</h1>
-            <tr>
-                <?php foreach ($biermerken as $biermerk): ?>
-                    <th><?= $biermerk ?></th>
-                <?php endforeach ?>
-            </tr>
+
+          <tr>
+                 <th>biernummer</th>
+                 <th>bier</th>
+             </tr>
         </thead>
 
         <tbody>
-            <?php foreach ($bierArr as $bierdetails): ?>
-                <tr>
-                    <?php foreach ($bierdetails as $detail): ?>
-                    <td><?= $detail ?></td>
-                    <?php endforeach ?>
-                </tr>
-            <?php endforeach ?>
-
+          <?php if(!empty($bieren)): foreach ($bieren as $key => $bier): ?>
+             <tr>
+                 <td><?= $key +1 ?></td>
+                 <?php foreach ($bier as $naam): ?>
+                 <td><?= $naam ?></td>
+                 <?php endforeach ?>
+             </tr>
+         <?php endforeach ?><?php endif ?>
         </tbody>
 
     </table>
