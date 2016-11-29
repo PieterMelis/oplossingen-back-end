@@ -21,12 +21,8 @@ try {
             case 'SUBMIT-ERROR':
                 $message["type"] = "error";
                 break;
-
-
         }
 	}
-
-
  ?>
 
  <!DOCTYPE html>

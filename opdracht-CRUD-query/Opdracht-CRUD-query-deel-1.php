@@ -4,7 +4,7 @@ $message	=	"";
 
 try
 {
-  $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' ); // Connectie maken
+  $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' ); 
   $bieren	=	array();
   $uno    = 1;
 

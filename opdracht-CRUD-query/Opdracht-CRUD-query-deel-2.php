@@ -4,7 +4,7 @@ $message	=	"";
 
 try
 {
-  $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' ); // Connectie maken
+  $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
   $bieren	=	array();
   $uno    = 1;
 
@@ -30,7 +30,6 @@ try
               $bieren[] = $bier;
           }
         }
-
     }
     catch (Exception $e)
     {
@@ -59,7 +58,7 @@ try
     <?php echo $message?>
     <h1>Opdracht CRUD query deel 2</h1>
 
-    
+
     <form action="Opdracht-CRUD-query-deel-2.php" method="GET">
       <select name="brouwernr">
           <?php foreach ($brouwArr as $naam): ?>
