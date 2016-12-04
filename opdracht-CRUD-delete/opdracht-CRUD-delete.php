@@ -65,8 +65,8 @@ $brouwersQuery = "SELECT * FROM brouwers";
   			<thead>
   				<tr>
   					<?php foreach ($tTitel as $kolom): ?>
-                      <th><?= $kolom ?></th>
-                  	<?php endforeach ?>
+                <th><?= $kolom ?></th>
+            <?php endforeach ?>
   				</tr>
   			</thead>
 
