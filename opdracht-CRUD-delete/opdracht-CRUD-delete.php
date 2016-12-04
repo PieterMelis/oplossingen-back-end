@@ -15,16 +15,22 @@ try
       $delete = $db->prepare( $queryString);
       $delete->bindvalue(":brouwernr", $del );
 
-    try {
-      $delete->execute();
-      $message = "goed verwijderd";
-    } catch (Exception $e) {
-      $message = "niet goed verwijderd. Probeer later opnieuw";
-    }
+      $deleted 	=	$delete->execute();
+
+      if ( $deleted )
+      {
+          $message = "goed verwijderd";
+      }
+      else
+      {
+          $message = "niet goed verwijderd. Probeer later opnieuw";
+      }
+
 }
-$brouwersQuery = "SELECT * FROM brouwers";
+    $brouwersQuery = "SELECT * FROM brouwers";
 		$brouwers = $db->prepare($brouwersQuery);
 		$brouwers->execute();
+
 		$bierenArr = array();
 		while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
 		{
@@ -77,8 +83,10 @@ $brouwersQuery = "SELECT * FROM brouwers";
   							<td><?= $value ?></td>
   						<?php endforeach ?>
   						<td>
-                <input type="image" name="delete" value="delete" src="img/icon-delete.png" border="0" alt="Submit"  />
-  						</td>
+                <button type="submit" name="delete" value="<?= $brouw['brouwernr'] ?>" class="delete-button">
+  								<img src="img/icon-delete.png" alt="Delete button">
+  							</button>
+              </td>
   					</tr>
   				<?php endforeach ?>
 
