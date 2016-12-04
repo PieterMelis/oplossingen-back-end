@@ -5,19 +5,37 @@ $message	=	"";
 try
 {
   $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
-  $bieren	=	array();
-  $uno    = 1;
 
-  $queryString = 'SELECT * FROM brouwers';;
-  $brouwers = $db->prepare($queryString);
-  $brouwers->execute();
-  $brouwArr = array();
-  while ($brouwernaam = $brouwers->fetch(PDO::FETCH_ASSOC))
-  {
-      $brouwArr[] = $brouwernaam;
-  }
 
+  if(isset($_POST["delete"]))
+		{
+      $del   = $_POST["delete"];
+
+      $queryString = 'DELETE FROM brouwers WHERE brouwernr = :brouwernr';
+      $delete = $db->prepare( $queryString);
+      $delete->bindvalue(":brouwernr", $del );
+
+    try {
+      $delete->execute();
+      $message = "goed verwijderd";
+    } catch (Exception $e) {
+      $message = "niet goed verwijderd. Probeer later opnieuw";
+    }
 }
+$brouwersQuery = "SELECT * FROM brouwers";
+		$brouwers = $db->prepare($brouwersQuery);
+		$brouwers->execute();
+		$bierenArr = array();
+		while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
+		{
+			$bierenArr[] = $bier;
+		}
+		$tTitel = array();
+		foreach($bierenArr[1] as $titel => $bier)
+        {
+            $tTitel[] = $titel;
+        }
+	}
 
     catch (Exception $e)
     {
@@ -33,44 +51,40 @@ try
     <title>Opdracht CRUD query</title>
   </head>
   <style media="screen">
-    td{
-      border: 1px  solid black;
-      margin: 0;
-      padding: 1em;
-      background: lightgrey;
-    }
+  <style>
+  		tr:nth-child(even) {background-color: lightgrey;}
+  	</style>
 
   </style>
 
   <body>
-    <?php echo $message?>
-    <h1>Opdracht CRUD delete</h1>
 
-    <table>
+  	<?= $message ?>
+  	<form action="opdracht-CRUD-delete.php" method="POST">
+  		<table>
+  			<thead>
+  				<tr>
+  					<?php foreach ($tTitel as $kolom): ?>
+                      <th><?= $kolom ?></th>
+                  	<?php endforeach ?>
+  				</tr>
+  			</thead>
 
-        <thead>
-          <tr>
-                 <th>biernummer</th>
-                 <th>bier</th>
-                 <th>adres</th>
-                 <th>postcode</th>
-                 <th>gemeente</th>
-                 <th>omzet</th>
+  			<tbody>
+  				<?php foreach ($bierenArr as $key => $brouw): ?>
+  					<tr>
+  						<?php foreach ($brouw as $value): ?>
+  							<td><?= $value ?></td>
+  						<?php endforeach ?>
+  						<td>
+                <input type="image" name="delete" value="delete" src="img/icon-delete.png" border="0" alt="Submit"  />
+  						</td>
+  					</tr>
+  				<?php endforeach ?>
 
-             </tr>
-        </thead>
+  			</tbody>
 
-        <tbody>
-          <?php foreach ($brouwArr as $key => $bier): ?>
-             <tr>
-                 <?php foreach ($bier as $naam): ?>
-                 <td><?= $naam ?></td>
-                 <?php endforeach ?>
-                 <td><input type="image" src="img/icon-delete.png" border="0" alt="Submit" value="<?= $key ?>" /></td>
-             </tr>
-         <?php endforeach ?>
-        </tbody>
-
-    </table>
-</body>
+  		</table>
+  	</form>
+  </body>
 </html>
