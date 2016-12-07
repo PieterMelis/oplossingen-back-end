@@ -1,15 +1,18 @@
 
 <?php
-$show=false;
-$message	=	"";
+// made by Pieter Melis
+
+$show=false;// bool om te form te verbergen
+$message	=	"";// zal boodschap weergeven
 try
 {
+  //database verbinding
   $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
 
-
+  //haal alles uit database van brouwers d.m.v select
   $brouwersQuery = "SELECT * FROM brouwers";
   $brouwers = $db->prepare($brouwersQuery);
-  $brouwers->execute();
+  $brouwers->execute();// uitvoeren
 
   $bierenArr = array();
   while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
@@ -22,11 +25,10 @@ try
           $tTitel[] = $titel;
       }
 
-
+// delete button
   if(isset($_POST["delete"]))
 		{
       $del   = $_POST["delete"];
-
       $queryString = 'DELETE FROM brouwers WHERE brouwernr = :brouwernr';
       $delete = $db->prepare( $queryString);
       $delete->bindvalue(":brouwernr", $del );
@@ -43,10 +45,11 @@ try
       }
 
     }
-
+    // update button
     if(isset($_POST["update"]))
     {
       $upd    = $_POST['update'];
+
       $queryString = 'SELECT * FROM brouwers WHERE brouwernr = :brouwernr';
 			$update = $db->prepare($queryString);
 			$update->bindValue( ':brouwernr', $upd);
@@ -72,6 +75,8 @@ try
 			$updateValue->bindValue(":postcode", $_POST['postcode']);
 			$updateValue->bindValue(":gemeente", $_POST['gemeente']);
 			$updateValue->bindValue(":omzet", $_POST['omzet']);
+      //gaat pagina herladen
+      header("Refresh:0");
 			if ($updateValue->execute() ) {
 				$message = "Wijzigen gelukt";
 			}
@@ -85,7 +90,6 @@ try
 
 
 	}
-
     catch (Exception $e)
     {
         $message = "Connectie is niet gelukt.";
@@ -138,6 +142,7 @@ try
 				<li>
 					<label for="omzet">omzet: </label>
 					<input type="text" value="<?= $dbUpdate['omzet']?>" id="omzet" name="omzet">
+					<input type="hidden" id="brouwernr" name="brouwernr" value="<?= $dbUpdate['brouwernr'] ?>">
 				</li>
 			</ul>
 
