@@ -30,7 +30,7 @@ try
       }
 
 }
-
+  
     $brouwersQuery = "SELECT * FROM brouwers";
 		$brouwers = $db->prepare($brouwersQuery);
 		$brouwers->execute();
