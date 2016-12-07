@@ -5,10 +5,23 @@ $message	=	"";
 try
 {
   $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
-  if(isset($_POST["update"]))
+
+
+  $brouwersQuery = "SELECT * FROM brouwers";
+  $brouwers = $db->prepare($brouwersQuery);
+  $brouwers->execute();
+
+  $bierenArr = array();
+  while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
   {
-    $show=true;
+    $bierenArr[] = $bier;
   }
+  $tTitel = array();
+  foreach($bierenArr[1] as $titel => $bier)
+      {
+          $tTitel[] = $titel;
+      }
+
 
   if(isset($_POST["delete"]))
 		{
@@ -29,22 +42,48 @@ try
           $message = "niet goed verwijderd. Probeer later opnieuw";
       }
 
-}
-  
-    $brouwersQuery = "SELECT * FROM brouwers";
-		$brouwers = $db->prepare($brouwersQuery);
-		$brouwers->execute();
+    }
 
-		$bierenArr = array();
-		while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
-		{
-			$bierenArr[] = $bier;
+    if(isset($_POST["update"]))
+    {
+      $upd    = $_POST['update'];
+      $queryString = 'SELECT * FROM brouwers WHERE brouwernr = :brouwernr';
+			$update = $db->prepare($queryString);
+			$update->bindValue( ':brouwernr', $_POST['update']);
+			$update->execute();
+      while ($row = $update->fetch(PDO::FETCH_ASSOC)) {
+      $dbUpdate = $row;
+    }
+    $show=true;
+
+    }
+    if (isset($_POST['wijzigen'])) {
+			$querydbUpdate = 'UPDATE brouwers
+          							SET 	brnaam = :brnaam,
+            									adres = :adres,
+            									postcode = :postcode,
+            									gemeente = :gemeente,
+            									omzet = :omzet
+          							WHERE brouwernr = :brouwernr';
+			$updateValue = $db->prepare($querydbUpdate);
+			$updateValue->bindValue(":brouwernr", $_POST['brouwernr']);
+			$updateValue->bindValue(":brnaam", $_POST['brnaam']);
+			$updateValue->bindValue(":adres", $_POST['adres']);
+			$updateValue->bindValue(":postcode", $_POST['postcode']);
+			$updateValue->bindValue(":gemeente", $_POST['gemeente']);
+			$updateValue->bindValue(":omzet", $_POST['omzet']);
+			if ($updateValue->execute() ) {
+				$message = "Wijzigen gelukt";
+			}
+			else
+			{
+				$message ="Wijzigen is niet gelukt: ";
+			}
 		}
-		$tTitel = array();
-		foreach($bierenArr[1] as $titel => $bier)
-        {
-            $tTitel[] = $titel;
-        }
+
+
+
+
 	}
 
     catch (Exception $e)
@@ -68,37 +107,44 @@ try
 
 
   <body>
+
+    <h1>Brouwerij <?= $dbUpdate['brnaam'] ?> ( #<?= $dbUpdate['brouwernr'] ?> ) wijzigen</h1>
 <?php if ($show): ?>
   <form action="opdracht-CRUD-update.php" method="POST">
 
     <form>
       <ul>
-          <li>
-              <label for="brouwernaam">Brouwernaam</label>
-              <input type="text" id="brouwernaam" name="brouwernaam" value="Achouffe">
-          </li>
-          <li>
-              <label for="adres">adres</label>
-              <input type="text" id="adres" name="adres" value="Route du Village 32">
-          </li>
-          <li>
-              <label for="postcode">postcode</label>
-              <input type="text" id="postcode" name="postcode" value="6666">
-          </li>
-          <li>
-              <label for="gemeente">gemeente</label>
-              <input type="text" id="gemeente" name="gemeente" value="Achouffe-Wibrin">
-          </li>
-          <li>
-              <label for="omzet">omzet</label>
-              <input type="text" id="omzet" name="omzet" value="10000">
-          </li>
-      </ul>
-      <input type="submit" name="submit">
+				<li>
+					<label for="brouwernaam">brouwernaam: </label>
+					<input type="text" value="<?= $dbUpdate['brnaam']?>" id="brnaam" name="brnaam">
+				</li>
+
+				<li>
+					<label for="adres">adres: </label>
+					<input type="text" value="<?= $dbUpdate['adres']?>" id="adres" name="adres">
+				</li>
+
+				<li>
+					<label for="postcode">postcode: </label>
+					<input type="text" value="<?= $dbUpdate['postcode']?>" id="postcode" name="postcode">
+				</li>
+
+				<li>
+					<label for="gemeente">gemeente: </label>
+					<input type="text" value="<?= $dbUpdate['gemeente']?>" id="gemeente" name="gemeente">
+				</li>
+
+				<li>
+					<label for="omzet">omzet: </label>
+					<input type="text" value="<?= $dbUpdate['omzet']?>" id="omzet" name="omzet">
+				</li>
+			</ul>
+
+      <button type="submit" name="wijzigen" value="wijzigen">Wijzigen</button>
   </form>
+
 <?php endif; ?>
-
-
+<form action="opdracht-CRUD-update.php" method="POST">
   		<table>
   			<thead>
   				<tr>
@@ -130,6 +176,9 @@ try
   			</tbody>
 
   		</table>
+    </form>
+
+
   	</form>
   </body>
 </html>
