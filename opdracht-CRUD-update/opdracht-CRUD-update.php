@@ -49,7 +49,7 @@ try
       $upd    = $_POST['update'];
       $queryString = 'SELECT * FROM brouwers WHERE brouwernr = :brouwernr';
 			$update = $db->prepare($queryString);
-			$update->bindValue( ':brouwernr', $_POST['update']);
+			$update->bindValue( ':brouwernr', $upd);
 			$update->execute();
       while ($row = $update->fetch(PDO::FETCH_ASSOC)) {
       $dbUpdate = $row;
@@ -108,8 +108,9 @@ try
 
   <body>
 
-    <h1>Brouwerij <?= $dbUpdate['brnaam'] ?> ( #<?= $dbUpdate['brouwernr'] ?> ) wijzigen</h1>
+
 <?php if ($show): ?>
+      <h1>Brouwerij <?= $dbUpdate['brnaam'] ?> ( #<?= $dbUpdate['brouwernr'] ?> ) wijzigen</h1>
   <form action="opdracht-CRUD-update.php" method="POST">
 
     <form>
