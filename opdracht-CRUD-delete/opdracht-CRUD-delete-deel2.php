@@ -1,17 +1,11 @@
 <?php
 
 $message	=	"";
-$deleteConfirm = false;
-$deleteId		=	false;
+
 try
 {
   $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
 
-  if ( isset( $_POST[ 'confirm' ] ) )
-  {
-	  $deleteConfirm	=	true;
-	  $deleteId		=	$_POST[ 'confirm' ];
-  }
 
   if(isset($_POST["delete"]))
 		{
@@ -33,7 +27,6 @@ try
       }
 
 }
-
     $brouwersQuery = "SELECT * FROM brouwers";
 		$brouwers = $db->prepare($brouwersQuery);
 		$brouwers->execute();
@@ -61,7 +54,7 @@ try
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Opdracht CRUD update</title>
+    <title>Opdracht CRUD query</title>
   </head>
   <style media="screen">
   <style>
@@ -71,36 +64,9 @@ try
   </style>
 
   <body>
-    <?php if ( $message ): ?>
-   <div>
-     <?= $message ?>
-   </div>
-   <?php endif ?>
 
-   <?php if ( $deleteConfirm ): ?>
-   <div>
-     Bent u zeker dat u deze record wilt verwijderen?
-     <form action="opdracht-CRUD-update.php" method="POST">
-
-       <button type="submit" name="delete" value="<?= $deleteId ?>">
-         zeker!
-       </button>
-
-       <button type="submit">
-         Ongedaan maken
-       </button>
-
-     </form>
-   </div>
- <?php endif ?>
-
-
-
-
-
-
-
-  	<form action="opdracht-CRUD-update.php" method="POST">
+  	<?= $message ?>
+  	<form action="opdracht-CRUD-delete.php" method="POST">
   		<table>
   			<thead>
   				<tr>
@@ -121,11 +87,6 @@ try
   								<img src="img/icon-delete.png" alt="Delete button">
   							</button>
               </td>
-							<td>
-								<button type="submit" name="update" value="<?= $brouw['brouwernr'] ?>" class="update-button">
-									<img src="img/update.png" alt="Update button">
-								</button>
-							</td>
   					</tr>
   				<?php endforeach ?>
 

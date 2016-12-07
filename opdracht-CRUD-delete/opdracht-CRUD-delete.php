@@ -56,12 +56,12 @@ try
     <meta charset="utf-8">
     <title>Opdracht CRUD query</title>
   </head>
-  <style media="screen">
+
   <style>
   		tr:nth-child(even) {background-color: lightgrey;}
   	</style>
 
-  </style>
+
 
   <body>
 
