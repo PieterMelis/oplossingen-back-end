@@ -41,7 +41,7 @@ if (isset($_POST['random'])) {
 
 if(isset($_POST[ 'opslaan' ]))
 {
-  if ($_SESSION["email"] == "" || strpos($_SESSION["email"] , '@') == false ) {
+  if ($email == "" || strpos($email , '@') == false ) {
     $_SESSION["text"] = "vul een geldig email in!";
     header("location: registratie-form.php");
   }else {

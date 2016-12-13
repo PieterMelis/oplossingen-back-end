@@ -1,8 +1,12 @@
 <?php
+session_start();
 $error = "";
-if (isset($_SESSION['text'])) {
-  $error = $_SESSION['text'];
+if (isset($_SESSION['loginText'])) {
+  $error = $_SESSION['loginText'];
 }
+var_dump($_SESSION);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,26 @@ if (isset($_SESSION['text'])) {
     <title></title>
   </head>
   <body>
-      <h1>Login</h1>
-      <p><?php if(isset($_SESSION['text'])) {echo $_SESSION['text'];}?></p>
+
+      <p><?php if(isset($error)) {echo $error;}?></p>
+
+    <h1 class="text-center">Inloggen</h1>
+    </div>
+    <form action="login-process.php" method="post">
+
+      <div>
+        <label for="email">e-mail</label>
+        <input type="text" name="email" value="">
+      </div>
+      <div>
+        <label for="password">paswoord</label>
+        <input type="text" name="password" value="">
+      </div>
+        <input class="button" type="submit" name="login" value="Login">
+      </div>
+
+      <p >Nog geen account? Maak er dan eentje aan op de <a  href="">registratiepagina</a>.</p>
+    </form>
+
   </body>
 </html>

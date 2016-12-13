@@ -9,7 +9,7 @@ session_start();
 	{
 		require_once( $classname . '.php' );
 	}
-
+var_dump($_SESSION);
 
 ?>
 <!DOCTYPE html>
