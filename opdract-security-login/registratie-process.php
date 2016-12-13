@@ -53,10 +53,10 @@ if(isset($_POST[ 'opslaan' ]))
     $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
     $queryCheckUser = "SELECT * FROM users WHERE email = :email";
-    $statementCheckUser = $db->prepare($queryCheckUser);
-    $statementCheckUser->bindValue(":email", $_SESSION["email"]);
-    $statementCheckUser->execute();
-    $userExists = $statementCheckUser->fetch(PDO::FETCH_ASSOC);
+    $checkUser = $db->prepare($queryCheckUser);
+    $checkUser->bindValue(":email", $_SESSION["email"]);
+    $checkUser->execute();
+    $userExists = $checkUser->fetch(PDO::FETCH_ASSOC);
     var_dump($userExists["email"]);
     if ($userExists["email"] == $_SESSION["email"]) {
       $_SESSION["text"] = "Dit email heb je al";

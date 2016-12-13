@@ -1,9 +1,10 @@
 <?php
 session_start();
-if(!isset($_COOKIE['login']))
+if(isset($_COOKIE['login']))
 {
 
-echo "test";
+  $_SESSION['text'] = "U moet eerst inloggen.";
+  header('location: login-form.php' );
 }
 ?>
 
@@ -17,7 +18,7 @@ echo "test";
     <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
   </head>
   <body>
-    <h1 class="text-center ">Dashboard</h1>
+    <h1 >Dashboard</h1>
 
 
   </body>
