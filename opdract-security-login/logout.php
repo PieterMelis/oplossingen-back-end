@@ -5,7 +5,7 @@ $loginForm = 'login-form.php';
 unset($_SESSION['login']);
 
 setcookie('login', '', time()-3600);
-$_SESSION['out'] = "U bent uitgelogd. Tot de volgende keer.";
+$_SESSION['out'] = "U bent uitgelogd.";
 header('refresh:3;url=' . $loginForm );
 
 if(isset($_SESSION['out'])) {
@@ -14,7 +14,7 @@ if(isset($_SESSION['out'])) {
 var_dump($_SESSION);
 var_dump($_COOKIE);
 
-
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,8 +22,7 @@ var_dump($_COOKIE);
     <meta charset="utf-8">
     <title>logout</title>
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1>logout</h1>

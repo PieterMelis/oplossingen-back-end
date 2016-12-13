@@ -18,16 +18,7 @@ var_dump($_SESSION);
     <meta charset="utf-8">
     <title>Registreren</title>
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
-		<style media="screen">
-			.error{
-				background-color: red;
-				width: 100%;
-				color: white;
-				text-align: center;
-			}
-		</style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 		<div class="error">

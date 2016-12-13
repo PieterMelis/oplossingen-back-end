@@ -1,11 +1,10 @@
 <?php
 session_start();
-$error = "";
-if (isset($_SESSION['loginText'])) {
-  $error = $_SESSION['loginText'];
+if (isset($_SESSION['errorLogin'])) {
+  $error = $_SESSION['errorLogin'];
 }
 var_dump($_SESSION);
-
+$_SESSION['errorLogin'] = "";
 
 ?>
 
@@ -14,15 +13,14 @@ var_dump($_SESSION);
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
+    <link rel="stylesheet" href="style.css">
     <title></title>
   </head>
   <body>
 
-      <p><?php if(isset($error)) {echo $error;}?></p>
+    <p class="error"><?php if(isset($error)) {echo $error;}?></p>
 
-    <h1 class="text-center">Inloggen</h1>
+    <h1 >Inloggen</h1>
     </div>
     <form action="login-process.php" method="post">
 
@@ -37,7 +35,7 @@ var_dump($_SESSION);
         <input class="button" type="submit" name="login" value="Login">
       </div>
 
-      <p >Nog geen account? Maak er dan eentje aan op de <a  href="">registratiepagina</a>.</p>
+      <p >Nog geen account? Maak er dan eentje aan op de <a  href="registratie-form.php">registratiepagina</a>.</p>
     </form>
 
   </body>

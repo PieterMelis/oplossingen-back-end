@@ -15,8 +15,7 @@ if(!isset($_COOKIE['login']))
     <meta charset="utf-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
-    <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1 >Dashboard</h1>
