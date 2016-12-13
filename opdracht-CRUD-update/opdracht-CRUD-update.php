@@ -9,21 +9,7 @@ try
   //database verbinding
   $db     = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
 
-  //haal alles uit database van brouwers d.m.v select
-  $brouwersQuery = "SELECT * FROM brouwers";
-  $brouwers = $db->prepare($brouwersQuery);
-  $brouwers->execute();// uitvoeren
 
-  $bierenArr = array();
-  while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
-  {
-    $bierenArr[] = $bier;
-  }
-  $tTitel = array();
-  foreach($bierenArr[1] as $titel => $bier)
-      {
-          $tTitel[] = $titel;
-      }
 
 // delete button
   if(isset($_POST["delete"]))
@@ -75,8 +61,6 @@ try
 			$updateValue->bindValue(":postcode", $_POST['postcode']);
 			$updateValue->bindValue(":gemeente", $_POST['gemeente']);
 			$updateValue->bindValue(":omzet", $_POST['omzet']);
-      //gaat pagina herladen
-      header("Refresh:0");
 			if ($updateValue->execute() ) {
 				$message = "Wijzigen gelukt";
 			}
@@ -85,7 +69,21 @@ try
 				$message ="Wijzigen is niet gelukt: ";
 			}
 		}
+    //haal alles uit database van brouwers d.m.v select
+    $brouwersQuery = "SELECT * FROM brouwers";
+    $brouwers = $db->prepare($brouwersQuery);
+    $brouwers->execute();// uitvoeren
 
+    $bierenArr = array();
+    while($bier = $brouwers->fetch(PDO::FETCH_ASSOC))
+    {
+      $bierenArr[] = $bier;
+    }
+    $tTitel = array();
+    foreach($bierenArr[1] as $titel => $bier)
+        {
+            $tTitel[] = $titel;
+        }
 
 
 
