@@ -1,7 +1,6 @@
 <?php
 session_start();
 $emailIsValid = false ;
-$db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
 if (isset($_POST["email"])) {
   $email = $_POST["email"];
@@ -51,6 +50,7 @@ if(isset($_POST[ 'opslaan' ]))
     $_SESSION["text"] = "vul een geldig email in!";
     header("location: registratie-form.php");
   }else {
+    $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
     $queryCheckUser = "SELECT * FROM users WHERE email = :email";
     $statementCheckUser = $db->prepare($queryCheckUser);
@@ -63,7 +63,19 @@ if(isset($_POST[ 'opslaan' ]))
       header("location: registratie-form.php");
     }
     else {
-      insertUser();
+      try
+	        	{
+          		insertUser();
+          		$cookieValue = $mail  . "," . hash('SHA512',  $mail  . $salt);
+          		setcookie('login',$cookieValue, time() + 60*60*24);
+  			  		header("Location: dashboard.php?");
+	        	}
+	        	catch (exception $e)
+	        	{
+	        		$_SESSION['text'] = "Insert niet gelukt";
+			  		       header("Location: registratie-form.php?");
+	        	}
+
     }
 
   }
@@ -72,6 +84,7 @@ if(isset($_POST[ 'opslaan' ]))
 function insertUser()
 {
       //Maak een connectie met de database en selecteer de database
+      $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
       $salt = uniqid(mt_rand(), true);
       $saltedPassword = $_SESSION["paswoord"] . $salt;
