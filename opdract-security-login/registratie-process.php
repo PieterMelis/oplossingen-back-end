@@ -4,21 +4,16 @@ $emailIsValid = false ;
 
 if (isset($_POST["email"])) {
   $email = $_POST["email"];
-  $_SESSION["email"] = $email;
-
-  echo $email;
 }
+
 if (isset($_POST["paswoord"])) {
   $pwd = $_POST["paswoord"];
   $_SESSION["paswoord"] = $pwd;
-
-  echo $pwd;
 }
+
 $_SESSION["text"] = "";
 
 if (isset($_POST['random'])) {
-
-//als de genereer een paswoord is ingedrukt
   $pwd = true;
 //aanmaken van function
   function generatePassword()
@@ -50,6 +45,8 @@ if(isset($_POST[ 'opslaan' ]))
     $_SESSION["text"] = "vul een geldig email in!";
     header("location: registratie-form.php");
   }else {
+
+    $_SESSION["email"] = $email;
     $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
     $queryCheckUser = "SELECT * FROM users WHERE email = :email";
@@ -82,7 +79,7 @@ if(isset($_POST[ 'opslaan' ]))
 
   }
 }
-
+//zal een user toevoegen
 function insertUser()
 {
       //Maak een connectie met de database en selecteer de database

@@ -1,8 +1,7 @@
 <?php
 session_start();
-if(isset($_COOKIE['login']))
+if(!isset($_COOKIE['login']))
 {
-
   $_SESSION['text'] = "U moet eerst inloggen.";
   header('location: login-form.php' );
 }
