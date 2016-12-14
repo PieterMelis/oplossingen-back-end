@@ -5,7 +5,6 @@ if (isset($_SESSION['errorLogin'])) {
 }
 var_dump($_SESSION);
 $_SESSION['errorLogin'] = "";
-
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +34,7 @@ $_SESSION['errorLogin'] = "";
         <input class="button" type="submit" name="login" value="Login">
       </div>
 
-      <p >Nog geen account? Maak er dan eentje aan op de <a  href="registratie-form.php">registratiepagina</a>.</p>
+      <p >Nog geen account? Maak er dan een aan op de <a  href="registratie-form.php">registratiepagina</a>.</p>
     </form>
 
   </body>

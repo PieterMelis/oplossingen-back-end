@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-
 if(isset($_POST['login']))
 {
   $email = $_POST['email'];
   $paswoord = $_POST['password'];
-
 
   $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
@@ -35,7 +33,7 @@ if(isset($_POST['login']))
     }
     else
     {
-      $_SESSION['errorLogin'] = "Je bent binnen!!";
+      $_SESSION['errorLogin'] = "Je bent binnen!";
       $cookieValue = $mail  . "," . hash('SHA512',  $mail  . $salt);
       setcookie('login',$cookieValue, time() + 60*60*24);
       header("Location: dashboard.php?");
