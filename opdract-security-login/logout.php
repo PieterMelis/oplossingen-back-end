@@ -14,7 +14,8 @@ if(isset($_SESSION['out'])) {
 var_dump($_SESSION);
 var_dump($_COOKIE);
 
-session_destroy();
+
+session_unset(); 
 ?>
 <!DOCTYPE html>
 <html>

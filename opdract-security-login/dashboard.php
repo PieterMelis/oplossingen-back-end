@@ -1,10 +1,39 @@
 <?php
 session_start();
-if(!isset($_COOKIE['login']))
-{
-  $_SESSION['loginText'] = "U moet eerst inloggen.";
+$login=false;
+if(isset($_COOKIE['login'])){
+
+  $user = explode(",",$_COOKIE["login"]);
+	$email  = $user[0];
+	$hashCookie = $user[1];
+// Connectie tot database
+try {
+  $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
+
+  $queryCheckUser = "SELECT * FROM users WHERE email = :email";
+  $checkUser = $db->prepare($queryCheckUser);
+  $checkUser->bindValue(":email", $_SESSION["email"]);
+  $checkUser->execute();
+  $userExists = $checkUser->fetch(PDO::FETCH_ASSOC);
+  $test = $userExists["email"];
+
+} catch (Exception $e) {
+  $_SESSION["errorLogin"]="Er is iets fout met de database";
   header('location: login-form.php' );
+  $login=false;
 }
+
+if($hashCookie == $test)
+    {
+      $login=true;
+    }
+    else
+    {
+      $_SESSION["errorLogin"]="Er is iets fout gelopen, probeer het later opnieuw".$hashCookie."xxxxxxxxxxxxxx".$hashDatabase;
+      header('location: login-form.php' );
+    }
+}
+
 
 
 ?>
@@ -18,6 +47,9 @@ if(!isset($_COOKIE['login']))
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <?php if ($login): ?>
+
+    <?php endif; ?>
     <h1 >Dashboard</h1>
 
     <a  href="logout.php">uitloggen</a>
