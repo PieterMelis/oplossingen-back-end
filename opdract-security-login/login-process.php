@@ -34,7 +34,7 @@ if(isset($_POST['login']))
     else
     {
       $_SESSION['errorLogin'] = "Je bent binnen!";
-      $cookieValue = $mail  . "," . hash('SHA512',  $mail  . $salt);
+      $cookieValue = $user["email"]  . "," . $user["hashed_password"];
       setcookie('login',$cookieValue, time() + 60*60*24);
       header("Location: dashboard.php?");
     }

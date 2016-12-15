@@ -65,7 +65,7 @@ if(isset($_POST[ 'opslaan' ]))
       try
       	{
       		insertUser();
-      		$cookieValue = $mail  . "," . hash('SHA512',  $mail  . $salt);
+      		$cookieValue = $_SESSION["email"]  . "," . hash('SHA512',  $email  . $salt);
       		setcookie('login',$cookieValue, time() + 60*60*24);
 		  		header("Location: dashboard.php?");
       	}

@@ -1,38 +1,43 @@
 <?php
 session_start();
+$user = array();
 $login=false;
 if(isset($_COOKIE['login'])){
 
   $user = explode(",",$_COOKIE["login"]);
-	$email  = $user[0];
-	$hashCookie = $user[1];
-// Connectie tot database
-try {
-  $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
+  $userP  = $user[1];
+  $databasePwd = database($user[0]);
 
-  $queryCheckUser = "SELECT * FROM users WHERE email = :email";
-  $checkUser = $db->prepare($queryCheckUser);
-  $checkUser->bindValue(":email", $_SESSION["email"]);
-  $checkUser->execute();
-  $userExists = $checkUser->fetch(PDO::FETCH_ASSOC);
-  $test = $userExists["email"];
+if($databasePwd === $userP)
+      {
+        $login=true;
+      }
+      else
+      {
+        $_SESSION["errorLogin"]= "werkt niet " . $user[1]. "  ". $databasePwd;
+        header('location: login-form.php' );
+      }
 
-} catch (Exception $e) {
-  $_SESSION["errorLogin"]="Er is iets fout met de database";
-  header('location: login-form.php' );
-  $login=false;
-}
-
-if($hashCookie == $test)
-    {
-      $login=true;
     }
-    else
-    {
-      $_SESSION["errorLogin"]="Er is iets fout gelopen, probeer het later opnieuw".$hashCookie."xxxxxxxxxxxxxx".$hashDatabase;
-      header('location: login-form.php' );
-    }
-}
+
+      function database($email)
+      {
+        // Connectie tot database
+        try {
+          $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
+
+          $queryCheckUser = "SELECT hashed_password FROM users where email = :email";
+          $checkUser = $db->prepare($queryCheckUser);
+          $checkUser->bindValue(":email", $email);
+          $checkUser->execute();
+          $result = $checkUser->fetch(PDO::FETCH_ASSOC);
+          return $result["hashed_password"];
+        } catch (Exception $e) {
+          $_SESSION["errorLogin"]="Er is iets fout met de database";
+          header('location: login-form.php' );
+          $login=false;
+        }
+      }
 
 
 
