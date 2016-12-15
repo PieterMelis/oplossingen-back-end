@@ -5,16 +5,16 @@ $login=false;
 if(isset($_COOKIE['login'])){
 
   $user = explode(",",$_COOKIE["login"]);
-  $userP  = $user[1];
-  $databasePwd = database($user[0]);
+  $database = database($user[0]);
 
-if($databasePwd === $userP)
+
+if($database == $user[1])
       {
         $login=true;
       }
       else
       {
-        $_SESSION["errorLogin"]= "werkt niet " . $user[1]. "  ". $databasePwd;
+        $_SESSION["errorLogin"]= "werkt niet ";
         header('location: login-form.php' );
       }
 
@@ -26,11 +26,13 @@ if($databasePwd === $userP)
         try {
           $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
 
-          $queryCheckUser = "SELECT hashed_password FROM users where email = :email";
+          $queryCheckUser = "SELECT * FROM users where email = :email";
           $checkUser = $db->prepare($queryCheckUser);
           $checkUser->bindValue(":email", $email);
           $checkUser->execute();
           $result = $checkUser->fetch(PDO::FETCH_ASSOC);
+
+          $_SESSION["test"] = $result["hashed_password"];
           return $result["hashed_password"];
         } catch (Exception $e) {
           $_SESSION["errorLogin"]="Er is iets fout met de database";
@@ -53,11 +55,10 @@ if($databasePwd === $userP)
   </head>
   <body>
     <?php if ($login): ?>
+      <h1 >Dashboard</h1>
 
+      <a  href="logout.php">uitloggen</a>
     <?php endif; ?>
-    <h1 >Dashboard</h1>
-
-    <a  href="logout.php">uitloggen</a>
 
   </body>
 </html>

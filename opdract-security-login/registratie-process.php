@@ -2,6 +2,7 @@
 session_start();
 $emailIsValid = false ;
 
+
 if (isset($_POST["email"])) {
   $email = $_POST["email"];
 }
@@ -15,6 +16,8 @@ $_SESSION["text"] = "";
 
 if (isset($_POST['random'])) {
   $pwd = true;
+
+
 //aanmaken van function
   function generatePassword()
   {
@@ -41,6 +44,8 @@ if (isset($_POST['random'])) {
 
 if(isset($_POST[ 'opslaan' ]))
 {
+
+
   if ($email == "" || strpos($email , '@') == false ) {
     $_SESSION["text"] = "vul een geldig email in!";
     header("location: registratie-form.php");
@@ -54,7 +59,7 @@ if(isset($_POST[ 'opslaan' ]))
     $checkUser->bindValue(":email", $_SESSION["email"]);
     $checkUser->execute();
     $userExists = $checkUser->fetch(PDO::FETCH_ASSOC);
-    var_dump($userExists["email"]);
+    // var_dump($userExists["email"]);
 
     if ($userExists["email"] == $_SESSION["email"]) {
       $_SESSION["text"] = "Dit email heb je al";
@@ -64,8 +69,22 @@ if(isset($_POST[ 'opslaan' ]))
     {
       try
       	{
-      		insertUser();
-      		$cookieValue = $_SESSION["email"]  . "," . hash('SHA512',  $email  . $salt);
+
+          //Maak een connectie met de database en selecteer de database
+          $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
+          $salt = uniqid(mt_rand(), true);
+          $saltedPassword = $_SESSION["paswoord"] . $salt;
+          $hashedPassword = hash('sha512', $saltedPassword);
+
+          $queryUser = "INSERT INTO users(email, salt, hashed_password, last_login_time) VALUES(:email, :salt, :hashed_password, NOW()) ";
+          $userBindValue = $db->prepare($queryUser);
+          $userBindValue->bindValue(":email", $_SESSION["email"]);
+          $userBindValue->bindValue(":salt", $salt);
+          $userBindValue->bindValue(":hashed_password", $hashedPassword);
+          $UserAdded = $userBindValue->execute();
+
+
+      		$cookieValue = $_SESSION["email"]  . "," . $hashedPassword;
       		setcookie('login',$cookieValue, time() + 60*60*24);
 		  		header("Location: dashboard.php?");
       	}
@@ -80,22 +99,6 @@ if(isset($_POST[ 'opslaan' ]))
   }
 }
 //zal een user toevoegen
-function insertUser()
-{
-      //Maak een connectie met de database en selecteer de database
-      $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
-
-      $salt = uniqid(mt_rand(), true);
-      $saltedPassword = $_SESSION["paswoord"] . $salt;
-      $hashedPassword = hash('sha512', $saltedPassword);
-      $queryUser = "INSERT INTO users(email, salt, hashed_password, last_login_time) VALUES(:email, :salt, :hashed_password, NOW()) ";
-      $userBindValue = $db->prepare($queryUser);
-      $userBindValue->bindValue(":email", $_SESSION["email"]);
-      $userBindValue->bindValue(":salt", $salt);
-      $userBindValue->bindValue(":hashed_password", $hashedPassword);
-      $UserAdded = $userBindValue->execute();
-
-  }
 
 
 

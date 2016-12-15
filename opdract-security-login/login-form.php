@@ -3,7 +3,8 @@ session_start();
 if (isset($_SESSION['errorLogin'])) {
   $error = $_SESSION['errorLogin'];
 }
-var_dump($_SESSION);
+
+
 $_SESSION['errorLogin'] = "";
 ?>
 

@@ -11,11 +11,9 @@ header('refresh:3;url=' . $loginForm );
 if(isset($_SESSION['out'])) {
   $message = $_SESSION['out'];
 }
-var_dump($_SESSION);
-var_dump($_COOKIE);
 
 
-session_unset(); 
+session_unset();
 ?>
 <!DOCTYPE html>
 <html>
