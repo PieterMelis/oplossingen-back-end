@@ -42,23 +42,23 @@ if($database == $user[1])
       }
 
 
-
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Dashboard</title>
+    <title>gegevens-wijzigen-form</title>
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <?php if ($login): ?>
-      <p> Ingelogd als <?= $user[0]; ?> | <a  href="logout.php">uitloggen</a></p>
-      <h1 >Dashboard</h1>
+      <p><a  href="dashboard.php">Terug naar dashboard</a> | Ingelogd als <?= $user[0]; ?> | <a  href="logout.php">uitloggen</a></p>
+      <h1 >Gegevens wijzigen</h1>
       <br>
-      <a  href="gegevens-wijzigen-form.php">Gegevens wijzigen</a></p>
+      <p>Profielfoto</p>
+
+
     <?php endif; ?>
 
   </body>
