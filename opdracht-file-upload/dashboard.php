@@ -24,7 +24,7 @@ if($database == $user[1])
       {
         // Connectie tot database
         try {
-          $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
+          $db = new PDO("mysql:host=localhost;dbname=opdracht-file-upload2", "root", "");
 
           $queryCheckUser = "SELECT * FROM users where email = :email";
           $checkUser = $db->prepare($queryCheckUser);
@@ -32,7 +32,6 @@ if($database == $user[1])
           $checkUser->execute();
           $result = $checkUser->fetch(PDO::FETCH_ASSOC);
 
-          $_SESSION["test"] = $result["hashed_password"];
           return $result["hashed_password"];
         } catch (Exception $e) {
           $_SESSION["errorLogin"]="Er is iets fout met de database";

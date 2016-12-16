@@ -52,7 +52,7 @@ if(isset($_POST[ 'opslaan' ]))
   }else {
 
     $_SESSION["email"] = $email;
-    $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
+    $db = new PDO("mysql:host=localhost;dbname=opdracht-file-upload2", "root", "");
 
     $queryCheckUser = "SELECT * FROM users WHERE email = :email";
     $checkUser = $db->prepare($queryCheckUser);
@@ -71,7 +71,7 @@ if(isset($_POST[ 'opslaan' ]))
       	{
 
           //Maak een connectie met de database en selecteer de database
-          $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
+          $db = new PDO("mysql:host=localhost;dbname=opdracht-file-upload2", "root", "");
           $salt = uniqid(mt_rand(), true);
           $saltedPassword = $_SESSION["paswoord"] . $salt;
           $hashedPassword = hash('sha512', $saltedPassword);

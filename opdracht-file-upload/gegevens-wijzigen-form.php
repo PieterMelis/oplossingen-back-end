@@ -7,7 +7,7 @@ $login=false;
 
 
         try {
-          $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
+          $db = new PDO("mysql:host=localhost;dbname=opdracht-file-upload2", "root", "");
 
           $queryCheckUser = "SELECT * FROM users where email = :email";
           $statement = $db->prepare($queryCheckUser);

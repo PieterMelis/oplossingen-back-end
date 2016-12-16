@@ -6,7 +6,7 @@ if(isset($_POST['login']))
   $email = $_POST['email'];
   $paswoord = $_POST['password'];
 
-  $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
+  $db = new PDO("mysql:host=localhost;dbname=opdracht-file-upload2", "root", "");
 
   $querySelector  = 'SELECT * FROM users WHERE email = :email';
   $bind       = $db->prepare($querySelector);
