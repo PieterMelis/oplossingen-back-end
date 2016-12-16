@@ -14,11 +14,13 @@ $login=false;
           $statement->bindValue(":email", $user[0]);
           $statement->execute();
           $fetchRowLog = array();
-          while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
+          while ( $user  = $statement->fetch(PDO::FETCH_ASSOC) )
           {
-            $fetchRowLog[]	=	$row;
+            $fullUser[]	=	$user ;
           }
-          var_dump( $fetchRowLog);
+          var_dump( $fullUser);
+          $profo = $fullUser[0]['profile_picture'];
+          var_dump($profo);
 
         } catch (Exception $e) {
           $_SESSION["errorLogin"]="Er is iets fout met de database en kan img niet vinden";
@@ -45,7 +47,7 @@ $login=false;
         <ul>
             <li>
                 <label for="profile_picture">
-                    <img class="profile-picture" src="" alt="Profielfoto">
+                    <img class="profile-picture" src="img/<?php if($profo){ echo $profo;}else{echo "default.jpg";} ?>" alt="Profielfoto">
                 </label>
                 <input type="file" id="profile_picture" name="profile_picture">
             </li>
