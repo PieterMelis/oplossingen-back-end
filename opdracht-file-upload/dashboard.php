@@ -14,7 +14,7 @@ if($database == $user[1])
       }
       else
       {
-        $_SESSION["errorLogin"]= "werkt niet ";
+        $_SESSION["errorLogin"]= "Database en cookie zijn niet het zelfde ".$database ." ". $user[1];
         header('location: login-form.php' );
       }
 
@@ -24,7 +24,7 @@ if($database == $user[1])
       {
         // Connectie tot database
         try {
-          $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
+          $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
 
           $queryCheckUser = "SELECT * FROM users where email = :email";
           $checkUser = $db->prepare($queryCheckUser);

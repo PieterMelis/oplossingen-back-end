@@ -7,7 +7,7 @@ $login=false;
 
 
         try {
-          $db = new PDO("mysql:host=localhost;dbname=opdracht-security-login", "root", "");
+          $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
 
           $queryCheckUser = "SELECT * FROM users where email = :email";
           $statement = $db->prepare($queryCheckUser);
@@ -41,7 +41,7 @@ $login=false;
       <h1 >Gegevens wijzigen</h1>
       <br>
       <p>Profielfoto</p>
-      <form>
+      <form action="gegevens-bewerken.php" method="POST">
         <ul>
             <li>
                 <label for="profile_picture">
@@ -55,7 +55,7 @@ $login=false;
                 <input type="text" id="email" name="email" value="<?= $user[0]; ?>">
             </li>
         </ul>
-        <input type="submit" value="Gegevens wijzigen">
+        <input type="submit" name="submit" value="Gegevens wijzigen">
     </form>
 
 
