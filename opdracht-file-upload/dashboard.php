@@ -10,12 +10,11 @@ if(isset($_COOKIE['login'])){
 
 if($database == $user[1])
       {
-        echo $database ." ". $user[1];
         $login=true;
       }
       else
       {
-        $_SESSION["errorLogin"]= "Database en cookie zijn niet het zelfde ";
+        $_SESSION["errorLogin"]= "werkt niet ";
         header('location: login-form.php' );
       }
 

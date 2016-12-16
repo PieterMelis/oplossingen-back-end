@@ -74,13 +74,13 @@ if(isset($_POST[ 'opslaan' ]))
           $db = new PDO("mysql:host=localhost;dbname=db_file_upload", "root", "");
           $salt = uniqid(mt_rand(), true);
           $saltedPassword = $_SESSION["paswoord"] . $salt;
-          $Password = hash('sha512', $saltedPassword);
+          $hashedPassword = hash('sha512', $saltedPassword);
 
-          $queryUser = "INSERT INTO users(email, salt, password, last_login_time) VALUES(:email, :salt, password, NOW()) ";
+          $queryUser = "INSERT INTO users(email, salt, hashed_password, last_login_time) VALUES(:email, :salt, :hashed_password, NOW()) ";
           $userBindValue = $db->prepare($queryUser);
           $userBindValue->bindValue(":email", $_SESSION["email"]);
           $userBindValue->bindValue(":salt", $salt);
-          $userBindValue->bindValue(":password", $Password);
+          $userBindValue->bindValue(":hashed_password", $hashedPassword);
           $UserAdded = $userBindValue->execute();
 
 
