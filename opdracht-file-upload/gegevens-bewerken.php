@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
   if(isset($_COOKIE["login"]))
   {
     if (isset($_POST["submit"]))
@@ -28,6 +27,9 @@ session_start();
         $_SESSION['errorGegevens'] = "dit is geen foto";
         header("Location: gegevens-wijzigen-form.php");
       }
+    }else {
+      $_SESSION['errorGegevens'] = "er is iets mis";
+      header("Location: gegevens-wijzigen-form.php");
     }
 }
 

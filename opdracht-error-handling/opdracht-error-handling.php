@@ -47,7 +47,7 @@
         $logFile = "errors.txt";
         $errorLog = file_get_contents($logFile);
         $datum = date('l jS \of F Y h:i:s A');
-        
+
         $ip = $_SERVER['REMOTE_ADDR'];
         $errorLog .= ($datum . " " . $ip . " " . $message . PHP_EOL);
         file_put_contents($logFile, $errorLog);
@@ -63,8 +63,6 @@
     public function GetOptions() { return $this->_options; }
     }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

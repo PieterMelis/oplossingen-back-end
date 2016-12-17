@@ -14,8 +14,6 @@ if(!isset($_COOKIE["login"]))
 	{
     $user = array();
     $user = explode(",",$_COOKIE["login"]);
-
-
         try {
           $db = new PDO("mysql:host=localhost;dbname=opdracht-file-upload2", "root", "");
 
@@ -40,10 +38,7 @@ if(!isset($_COOKIE["login"]))
           header('location: login-form.php' );
 
         }
-
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
