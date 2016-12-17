@@ -59,7 +59,6 @@ if(isset($_POST[ 'opslaan' ]))
     $checkUser->bindValue(":email", $_SESSION["email"]);
     $checkUser->execute();
     $userExists = $checkUser->fetch(PDO::FETCH_ASSOC);
-    // var_dump($userExists["email"]);
 
     if ($userExists["email"] == $_SESSION["email"]) {
       $_SESSION["text"] = "Dit email heb je al";

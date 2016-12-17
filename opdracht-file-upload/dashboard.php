@@ -6,7 +6,7 @@ if(isset($_COOKIE['login'])){
 
   $user = explode(",",$_COOKIE["login"]);
   $database = database($user[0]);
-
+$_SESSION['errorGegevens'] = "";
 
 if($database == $user[1])
       {
