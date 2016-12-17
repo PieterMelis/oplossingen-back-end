@@ -29,9 +29,7 @@ if(!isset($_COOKIE["login"]))
           $profo = $fullUser[0]['profile_picture'];
           $_SESSION["id"] = $fullUser[0]['id'];
           $_SESSION["foto"] = $profo;
-          var_dump( $fullUser);
-          var_dump($user);
-          var_dump($_SESSION);
+
 
         } catch (Exception $e) {
           $_SESSION["errorLogin"]="Er is iets fout met de database en kan img niet vinden";
