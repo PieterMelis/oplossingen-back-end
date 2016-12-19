@@ -24,7 +24,7 @@ var_dump($_SESSION);
 
 
       <?php if (isset($_SESSION["foutboodschappen"])){echo $_SESSION["foutboodschappen"];} ?>
-     <form action="contact.php" method="post" id="form">
+     <form action="contact.php" method="post">
          <ul>
              <li>
                  <label for="email">E-mailadres</label>
@@ -41,6 +41,37 @@ var_dump($_SESSION);
          </ul>
          <input type="submit" name="submit">
      </form>
-     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <script>
+     $( document ).ready(function() {
+        $('#form').submit(function(){
+          var info = $("#form").serialize();
+          $.ajax({
+               type: 'POST',
+               url: 'contact-API.php',
+               data: info,
+               success: function(data) {
+                 data = JSON.parse(data);
+
+                 if(data["type"] == "success") {
+
+                         $("#form").fadeOut(500, function(){
+                             $(".form_location").append("<p>Bedankt! Uw bericht is goed verzonden!</p>").hide().fadeIn(500);
+                         });
+                     }
+                     if(data["type"] == "error") {
+                         $(".err").html("");
+                         $(".form_location").prepend("<p class='err'>Oeps, er ging iets mis. Probeer opnieuw!</p>").hide().fadeIn(500);
+                     }
+
+                   }
+               }
+        });
+     });
+});
+
+
+
+     </script>
   </body>
 </html>
