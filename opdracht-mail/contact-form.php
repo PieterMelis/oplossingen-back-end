@@ -6,7 +6,11 @@ if (isset($_SESSION["email"])) {
 }
 if (isset($_SESSION["message"])) {
   $message = $_SESSION["message"];
+
 }
+
+var_dump($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html>

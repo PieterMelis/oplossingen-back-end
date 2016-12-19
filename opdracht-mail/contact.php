@@ -3,22 +3,53 @@
 session_start();
 
 if (isset($_POST['submit'])) {
+         if(isset($_POST['email']) && isset($_POST['message']))
+         {
+             $admin     =   'pietermelis123@gmail.com';
+             $sender	 =		$_POST['email'];
+             $message		=		$_POST['message'];
+             $copy			=		(isset($_POST['copy'])) ? true : false;
 
-  if (isset($_POST["email"])) {
-    $_SESSION["email"] = $_POST["email"];
-  }
-  if (isset($_POST["message"])) {
-    $_SESSION["message"] = $_POST["message"];
-  }
+             try
+             {
+                 $db = new PDO('mysql:host=localhost;dbname=opdracht-mail', 'root', '');
 
-    $_SESSION["foutboodschappen"] = "kan bericht  versturen";
+                 $dbQuery = 'INSERT INTO contact_messages (email, message, time_sent)
+                         VALUES (:email, :message, NOW())';
 
-    header("location: contact-form.php");
+                 $statement = $db->prepare($dbQuery);
+                 $statement->bindvalue(':email', $sender);
+                 $statement->bindvalue(':message', $message);
+
+                 $statement->execute();
+                  $headers = 'From: ' . $admin;
+                 //mail($admin, "Bericht van " . $sender, $message, $headers);
+
+                 if ($copy)
+                 {
+                   //mail($_POST["email"], "Jouw bericht", $message, $headers);
+                 }
+                 $_SESSION["foutboodschappen"] = "Verzonden";
+
+             }
+             catch(PDOException $e)
+             {
+                 $_SESSION["foutboodschappen"] = "Fout met database";
+             }
+         }
+         else
+         {
+             $_SESSION["foutboodschappen"] = "Er zijn nog lege velden";
+         }
 }else {
   $_SESSION["foutboodschappen"] = "kan bericht niet versturen";
 
-  header("location: contact-form.php");
+
 }
+
+header('location: contact-form.php' );
+
+
 
 
 
