@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
          if(isset($_POST['email']) && isset($_POST['message']))
          {
              $admin     =   'pietermelis123@gmail.com';
-             $sender	 =		$_POST['email'];
+             $sender	  =		$_POST['email'];
              $message		=		$_POST['message'];
              $copy			=		(isset($_POST['copy'])) ? true : false;
 

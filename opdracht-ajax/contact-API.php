@@ -9,7 +9,6 @@ if (isset($_POST['submit'])) {
              $sender	 =		$_POST['email'];
              $message		=		$_POST['message'];
              $copy			=		(isset($_POST['copy'])) ? true : false;
-
              try
              {
                  $db = new PDO('mysql:host=localhost;dbname=opdracht-mail', 'root', '');
@@ -58,7 +57,7 @@ else
   unset($_SESSION['fieldNames']);
 }
 
-
+header('location: contact-form.php');
 
 
 

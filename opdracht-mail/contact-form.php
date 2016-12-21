@@ -7,6 +7,12 @@ if (isset($_SESSION["email"])) {
 if (isset($_SESSION["message"])) {
   $message = $_SESSION["message"];
 
+
+}
+if (isset($_SESSION["foutboodschappen"]))
+{
+  $test =  $_SESSION["foutboodschappen"];
+  unset($_SESSION['foutboodschappen']);
 }
 
 var_dump($_SESSION);
@@ -23,7 +29,7 @@ var_dump($_SESSION);
 
 
 
-      <?php if (isset($_SESSION["foutboodschappen"])){echo $_SESSION["foutboodschappen"];} ?>
+      <?php  if(isset($test)){echo $test;}?>
      <form action="contact.php" method="post" id="form">
          <ul>
              <li>
@@ -41,6 +47,6 @@ var_dump($_SESSION);
          </ul>
          <input type="submit" name="submit">
      </form>
-     
+
   </body>
 </html>
