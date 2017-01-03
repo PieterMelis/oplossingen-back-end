@@ -8,7 +8,30 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                  @if(Auth::user())
+                  @foreach ($articles as $article)
+                               <tr>
+                                   
+                                   <td class="table-text">
+                                       <h3><a href="{{$article->url}}">{{ $article->title }}</a></h3>
+                                   </td>
+
+
+                                   <td>
+                                       <form action="" method="POST">
+                                           {{ csrf_field() }}
+
+                                           <button>edit</button>
+                                       </form>
+                                   </td>
+                               </tr>
+                           @endforeach
+                  @else
+                  Not logged in!
+                  @endif
+
+
+
                 </div>
             </div>
         </div>

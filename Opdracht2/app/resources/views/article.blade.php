@@ -8,13 +8,12 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                  
-                 <form action="{{ url('add') }}" method="POST" class="form-horizontal">
+                 <form action="/add" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
                     <div class="form-group">
-                        <label for="titel" class="col-sm-3 control-label">Title (max 255 chars)</label>
+                        <label for="title" class="col-sm-3 control-label">Title (max 255 chars)</label>
                         <div class="col-sm-6">
-                            <input type="text" name="titel" id="titel" class="form-control">
+                            <input type="text" name="title" id="title" class="form-control">
                         </div>
                       </div>
                       <div class="form-group">

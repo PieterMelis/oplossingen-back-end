@@ -11,16 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Http\Request;
+use App\Article;
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/', function () {
-    return view('home');
+
+  $articles = Article::orderBy('created_at','asc')->get();
+   return view('/home',[
+        'articles' => $articles
+    ]);
+
+});
+
+Route::get('/home', function () {
+
+  $articles = Article::orderBy('created_at','asc')->get();
+   return view('/home',[
+        'articles' => $articles
+    ]);
+
 });
 Route::get('/article', function () {
     return view('article');
@@ -28,9 +43,10 @@ Route::get('/article', function () {
 Route::get('/instructies', function () {
     return view('instructies');
 });
+
 Route::post('/add', function (Request $request) {
     $validator = Validator::make($request->all(), [
-        'tilel' => 'required|max:255',
+        'title' => 'required|max:255',
         'url' => 'required|max:255'
     ]);
 
@@ -39,5 +55,17 @@ Route::post('/add', function (Request $request) {
             ->withInput()
             ->withErrors($validator);
     }
-    return view('home');
+    $article = new Article;
+    $article->title = $request->title;
+    $article->url = $request->url;
+    $article->save();
+
+    return redirect('/');
+});
+
+/**
+ * Delete An Existing Task
+ */
+Route::delete('/add/{id}', function ($id) {
+
 });
