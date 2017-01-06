@@ -11,14 +11,14 @@
                   @if(Auth::user())
                   @foreach ($articles as $article)
                                <tr>
-                                   
+
                                    <td class="table-text">
                                        <h3><a href="{{$article->url}}">{{ $article->title }}</a></h3>
                                    </td>
 
 
                                    <td>
-                                       <form action="" method="POST">
+                                       <form action="/edit/{{$article->id}}" method="POST">
                                            {{ csrf_field() }}
 
                                            <button>edit</button>
