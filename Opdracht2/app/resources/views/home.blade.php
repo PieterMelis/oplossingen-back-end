@@ -5,33 +5,26 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Article overview</div>
 
                 <div class="panel-body">
                   @if(Auth::user())
                   @foreach ($articles as $article)
-                               <tr>
+                   <tr>
 
-                                   <td class="table-text">
-                                       <h3><a href="{{$article->url}}">{{ $article->title }}</a></h3>
-                                   </td>
-
-
-                                   <td>
-                                       <form action="/edit/{{$article->id}}" method="POST">
-                                           {{ csrf_field() }}
-
-                                           <button>edit</button>
-                                       </form>
-                                   </td>
-                               </tr>
-                           @endforeach
+                     <div >
+                        <a href="{{$article->url}}" class="urlTitle"><h3>{{$article->title}}</h3></a>
+                        <a href="articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                      </div>
+                      <div>
+                        <!--  Placeholder for later data -->
+                         0 points | posted by  |<a href="comments/{{$article->id}}">x comments</a>
+                      </div>
+                   </tr>
+                   @endforeach
                   @else
                   Not logged in!
                   @endif
-
-
-
                 </div>
             </div>
         </div>

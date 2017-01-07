@@ -45,8 +45,8 @@
                     <ul class="nav navbar-nav">
                       &nbsp;
                       @if(Auth::user())
-                      <li><a href="{{ url('/home') }}">Home</a></li>
-                      <li><a href="{{ url('/article') }}">Add article</a></li>
+                      <li><a href="{{ url('/') }}">Home</a></li>
+                      <li><a href="{{ url('/articles/add') }}">Add article</a></li>
                       <li><a href="{{ url('/instructies') }}">Instructies</a></li>
                       @else
                       <li><a href="{{ url('/') }}">Home</a></li>
