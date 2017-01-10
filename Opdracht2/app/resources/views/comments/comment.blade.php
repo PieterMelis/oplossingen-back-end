@@ -9,19 +9,17 @@
 
                 <div class="panel-body">
                   @if(Auth::user())
-                  @foreach ($articles as $article)
                    <tr>
-
                      <div >
-                        <a href="{{$article->url}}" class="urlTitle"><h3>{{$article->title}}</h3></a>
-                        <a href="articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                        <h3>{{$article->title}}</h3>
                       </div>
                       <div>
                         <!--  Placeholder for later data -->
-                         0 points | posted by  |<a href="comments/{{$article->id}}">x comments</a>
+                         0 points | posted by  | x comments
                       </div>
                    </tr>
-                   @endforeach
+                   
+
                   @else
                   Not logged in!
                   @endif

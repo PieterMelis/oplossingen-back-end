@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+      //  $this->middleware('auth');
     }
 
     /**
@@ -25,8 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at','asc')->get();
-        //'articles' => $articles
-        return view('home')->withArticles($articles);;
+
+        return view('/home')->withArticles($articles);;
     }
 
 }
