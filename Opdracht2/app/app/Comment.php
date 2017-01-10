@@ -10,4 +10,7 @@ class Comment extends Model
   {
       return $this->belongsTo('App\Article');
   }
+  protected $fillable = [
+    'id', 'name', 'comment',
+  ];
 }

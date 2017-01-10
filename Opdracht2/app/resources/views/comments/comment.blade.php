@@ -18,7 +18,15 @@
                          0 points | posted by  | x comments
                       </div>
                    </tr>
-                   
+
+                   @foreach ($comments as $comment)
+                    <tr>
+
+                      <div >
+                         {{$comment->$comment}}
+                       </div>
+                    </tr>
+                    @endforeach
 
                   @else
                   Not logged in!
