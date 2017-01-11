@@ -20,13 +20,38 @@
                    </tr>
 
                    @foreach ($comments as $comment)
-                    <tr>
 
-                      <div >
-                         {{$comment->$comment}}
-                       </div>
-                    </tr>
+                     <div class="comments">
+                       <ul>
+                               <li>
+                                   <div class="comment-body">{{$comment->comment}}</div>
+
+                                   <div class="comment-info">
+                                       Posted by {{$comment->name}} on {{$comment->created_at}}
+                                   </div>
+                               </li>
+                       </ul>
+                    </div>
                     @endforeach
+
+                    <form action="./add/{{$article->id}}" method="POST" class="form-horizontal">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                    <div class="form-group">
+                      <label for="body" class="col-sm-3 control-label">Comment</label>
+                      <div class="col-sm-6">
+                        <textarea type="text" name="comment" id="comment" class="form-control"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <button type="submit" class="btn btn-default">
+                                + Add comment
+                            </button>
+                        </div>
+                    </div>
+                  </form>
 
                   @else
                   Not logged in!

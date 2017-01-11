@@ -23,18 +23,7 @@
                    </tr>
                    @endforeach
                   @else
-                    @foreach ($articles as $article)
-                     <tr>
-
-                       <div >
-                          <a href="{{$article->url}}" class="urlTitle"><h3>{{$article->title}}</h3></a>
-                        </div>
-                        <div>
-                          <!--  Placeholder for later data -->
-                           0 points | posted by  |<a href="comments/{{$article->id}}">x comments</a>
-                        </div>
-                     </tr>
-                     @endforeach
+                  Not logged in!
                   @endif
                 </div>
             </div>

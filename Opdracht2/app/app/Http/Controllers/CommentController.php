@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Article;
@@ -23,9 +24,11 @@ class CommentController extends Controller
               'comment' => 'required|max:255'
           ]);
 
+
           $comment = new Comment;
-          $comment->name = $request->name;
+          $comment->name = "pieter";
           $comment->comment = $request->comment;
+          $comment->posted_by = 1;
           $comment->save();
 
           return redirect()->back();
