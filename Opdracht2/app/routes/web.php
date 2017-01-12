@@ -20,8 +20,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 
 
-
-
 Route::post('/articles/add', 'ArticleController@create');
 
 Route::get('articles/edit/{id}', 'ArticleController@edit');
