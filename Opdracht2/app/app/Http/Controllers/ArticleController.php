@@ -11,7 +11,6 @@ use resources\views\articles;
 
 class ArticleController  extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +21,6 @@ class ArticleController  extends Controller
       $articles = Article::all();
       return view('/')->withArticles($articles);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +32,6 @@ class ArticleController  extends Controller
              'title' => 'required|max:255',
              'url' => 'required|max:255'
          ]);
-
          if ($validator->fails()) {
              return redirect('/article')
                  ->withInput()
@@ -44,9 +41,7 @@ class ArticleController  extends Controller
          $article->title = $request->title;
          $article->url = $request->url;
          $article->save();
-
          return redirect('/');
-
     }
 
     /**

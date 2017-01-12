@@ -41,7 +41,6 @@
                       <div class="info">
                           0 points | posted by  |<a href="comments/{{$article->id}}">x comments</a>
                       </div>
-
                      @endforeach
                   @endif
                 </div>

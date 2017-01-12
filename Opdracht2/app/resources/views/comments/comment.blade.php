@@ -18,7 +18,6 @@
                          0 points | posted by  | x comments
                       </div>
                    </tr>
-
                    @foreach ($comments as $comment)
                      <div class="comments">
                        <ul>
@@ -31,7 +30,6 @@
                        </ul>
                     </div>
                     @endforeach
-
                     <form action="./add/{{$article->id}}" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -50,7 +48,6 @@
                         </div>
                     </div>
                   </form>
-
                   @else
                   Not logged in!
                   @endif

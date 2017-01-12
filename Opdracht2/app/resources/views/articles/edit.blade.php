@@ -17,16 +17,15 @@
                  </button>
              </form>
          </div>
-  <div class="breadcrumb">
-     <a href="/">← back to overview</a>
-  </div>
+            <div class="breadcrumb">
+               <a href="/">← back to overview</a>
+            </div>
               <div class="panel panel-default">
                   <div class="panel-heading">Edit Article
                     <a href="{{$article->id}}/delete" class="btn btn-danger btn-xs pull-right">
                         <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                     </a>
                   </div>
-
                   <!-- Edit -->
                  <form action="{{$article->id}}" method="post" class="form-horizontal">
                    {{ csrf_field() }}
@@ -54,8 +53,6 @@
                          </div>
                      </div>
                  </form>
-
-
                   </form>
                   </div>
               </div>
