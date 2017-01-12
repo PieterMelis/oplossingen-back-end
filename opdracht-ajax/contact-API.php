@@ -54,7 +54,6 @@ else
 {
   $_SESSION["foutboodschappen"] = 	'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.';
 
-  unset($_SESSION['fieldNames']);
 }
 
 header('location: contact-form.php');

@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
                  $statement->bindvalue(':message', $message);
 
                  $statement->execute();
-                  $headers = 'From: ' . $admin;
+                 $headers = 'From: ' . $admin;
                  //mail($admin, "Bericht van " . $sender, $message, $headers);
 
                  if ($copy)

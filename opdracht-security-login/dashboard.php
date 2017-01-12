@@ -55,7 +55,7 @@ if($database == $user[1])
   </head>
   <body>
     <?php if ($login): ?>
-      
+
       <h1 >Dashboard</h1>
       <br>
       <a  href="logout.php">uitloggen</a>

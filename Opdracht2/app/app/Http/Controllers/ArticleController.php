@@ -19,8 +19,8 @@ class ArticleController  extends Controller
      */
     public function index()
     {
-      $articles = Article::orderBy('created_at','asc')->get();
-      return view('/home')->withArticles($articles);
+      $articles = Article::all();
+      return view('/')->withArticles($articles);
     }
 
     /**
@@ -45,7 +45,7 @@ class ArticleController  extends Controller
          $article->url = $request->url;
          $article->save();
 
-         return redirect('/home');
+         return redirect('/');
 
     }
 
@@ -67,7 +67,7 @@ class ArticleController  extends Controller
       $article = Article::findOrFail($id);
 
       $article->update($request->all());
-       return redirect('/home');
+       return redirect('/');
     }
     public function delete($id, Request $request)
     {
@@ -75,6 +75,6 @@ class ArticleController  extends Controller
 
       $article->delete($request->all());
 
-      return redirect('/home');
+      return redirect('/');
     }
 }

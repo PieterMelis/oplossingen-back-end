@@ -16,6 +16,7 @@ class Articles extends Migration
             $table->string('title')->index();
             $table->string('url')->index();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     /**

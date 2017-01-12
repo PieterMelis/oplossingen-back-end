@@ -13,7 +13,7 @@ class CommentController extends Controller
   public function index(Request $request,$id)
      {
        $article = Article::findOrFail($id);
-       $comments = Comment::orderBy('created_at','asc')->get();
+       $comments = Comment::all();
 
        return view("comments/comment", compact('article', 'comments'));
      }

@@ -20,16 +20,14 @@
                    </tr>
 
                    @foreach ($comments as $comment)
-
                      <div class="comments">
                        <ul>
-                               <li>
-                                   <div class="comment-body">{{$comment->comment}}</div>
-
-                                   <div class="comment-info">
-                                       Posted by {{$comment->name}} on {{$comment->created_at}}
-                                   </div>
-                               </li>
+                         <li>
+                             <div class="comment-body">{{$comment->comment}}</div>
+                             <div class="comment-info">
+                                 Posted by {{$comment->name}} on {{$comment->created_at}}
+                             </div>
+                         </li>
                        </ul>
                     </div>
                     @endforeach
@@ -47,7 +45,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-default">
-                                + Add comment
+                              <i class="fa fa-plus"></i>   Add comment
                             </button>
                         </div>
                     </div>

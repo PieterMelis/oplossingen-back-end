@@ -4,6 +4,7 @@ $test = "";
 
 if (isset($_SESSION["email"])) {
   $email = $_SESSION["email"];
+  unset($_SESSION['email']);
 }
 if (isset($_SESSION["message"])) {
   $message = $_SESSION["message"];

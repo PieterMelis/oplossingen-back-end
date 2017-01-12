@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at','asc')->get();
+        $articles = Article::all();
 
-        return view('/home')->withArticles($articles);;
+        return view('index')->withArticles($articles);;
     }
 
 }
