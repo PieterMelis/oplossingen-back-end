@@ -15,6 +15,8 @@ class Articles extends Migration
             $table->increments('id');
             $table->string('title')->index();
             $table->string('url')->index();
+            $table->bigInteger('votes');
+            $table->string('posted_by');
             $table->timestamps();
             $table->softDeletes();
         });
