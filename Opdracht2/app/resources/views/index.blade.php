@@ -19,7 +19,11 @@
                    </div>
                     <div class="url">
                       <a href="{{$article->url}}" class="urlTitle"><h3>{{$article->title}}</h3></a>
+                      @if(isset(Auth::user()->name))
+                        @if(Auth::user()->name == $article->posted_by)
                       <a href="articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                    @endif
+                    @endif
                     </div>
                     <div class="info">
                         0 points | posted by   |<a href="comments/{{$article->id}}">x comments</a>

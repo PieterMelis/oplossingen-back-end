@@ -39,6 +39,9 @@ class ArticleController  extends Controller
          $article = new Article;
          $article->title = $request->title;
          $article->url = $request->url;
+
+         $article->votes = 0;
+         $article->posted_by = Auth::user()->name;
          $article->save();
          return redirect('/');
     }

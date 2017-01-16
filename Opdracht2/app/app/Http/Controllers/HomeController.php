@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\User;
+use App\Comment;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -22,10 +25,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
+        $user = User::all();
         $articles = Article::all();
-        return view('index')->withArticles($articles);;
+
+        
+        $user->name = $request->name;
+        return view('index')
+      ->withArticles($articles);
     }
 
 }
