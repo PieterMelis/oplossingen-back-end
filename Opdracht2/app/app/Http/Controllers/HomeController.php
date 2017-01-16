@@ -28,12 +28,13 @@ class HomeController extends Controller
     public function index(request $request)
     {
         $user = User::all();
-        $articles = Article::all();
+        $article = Article::all();
+        $comments = Comment::all();
 
-        
         $user->name = $request->name;
         return view('index')
-      ->withArticles($articles);
+      ->withArticles($article)
+      ->withComments($comments);
     }
 
 }
