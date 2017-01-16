@@ -33,8 +33,7 @@ class ArticleController  extends Controller
              'url' => 'required|max:255'
          ]);
          if ($validator->fails()) {
-             return redirect('/article')
-                 ->withInput()
+             return redirect('/articles/add')
                  ->withErrors($validator);
          }
          $article = new Article;
