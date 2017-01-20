@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\Article;
 use resources\views\articles;
-
+use App\User;
 class ArticleController  extends Controller
 {
     /**

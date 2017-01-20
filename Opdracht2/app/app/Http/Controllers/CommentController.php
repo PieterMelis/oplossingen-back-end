@@ -12,6 +12,7 @@ class CommentController extends Controller
 
   public function index(Request $request,$id)
      {
+
        $article = Article::findOrFail($id);
        $comments = Comment::all();
 

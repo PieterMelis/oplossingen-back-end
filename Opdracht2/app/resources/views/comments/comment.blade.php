@@ -6,18 +6,21 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Article overview</div>
-
+                @include("E.errors")
                 <div class="panel-body">
+
                   @if(Auth::user())
+
                    <tr>
                      <div >
                         <h3>{{$article->title}}</h3>
                       </div>
                       <div>
-                        <!--  Placeholder for later data -->
-                         0 points | posted by  | x comments
+
+                        {{$article->votes}} points | posted by {{{$article->posted_by}}} |comments</a>
                       </div>
                    </tr>
+
                    @foreach ($comments as $comment)
                      <div class="comments">
                        <ul>
@@ -51,6 +54,7 @@
                   @else
                   Not logged in!
                   @endif
+
                 </div>
             </div>
         </div>
