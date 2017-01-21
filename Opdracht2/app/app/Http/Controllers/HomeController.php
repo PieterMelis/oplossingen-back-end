@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
 use App\Article;
 use App\User;
+use Auth;
+use Illuminate\Support\Facades\URL;
 class HomeController extends Controller
 {
     /**
@@ -22,13 +25,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $user = User::all();
-        $articles = Article::all();
+     public function index(request $request)
+     {
+       $user = User::all();
+       $article = Article::all();
+       $comment = Comment::all();
 
-
-        return view('index')->withArticles($articles);;
-    }
-
+       $article->votes = 1;
+       $user->name = $request->name;
+       return view('index')
+       ->withArticles($article)
+       ->withComments($comment);
+     }
 }

@@ -11,27 +11,42 @@
 
                   @if(Auth::user())
 
-                   <tr>
-                     <div >
-                        <h3>{{$article->title}}</h3>
-                      </div>
-                      <div>
-
-                        {{$article->votes}} points | posted by {{{$article->posted_by}}} |comments</a>
-                      </div>
-                   </tr>
+                    @foreach ($articles as $article)
+                      @if($article->id == $comments->post_id)
+                      <div class="url">
+                        <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+                          @if(isset(Auth::user()->name))
+                            @if(Auth::user()->name == $article->posted_by)
+                          <a href="articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                            @endif
+                          @endif
+                        </div>
+                        <div class="info">
+                              {{$article->votes}} points | posted by {{{$article->posted_by}}}
+                              <?php $nrOfComments = 0 ;?>
+                          @foreach($comments as $comment)
+                            @if($comment->posted_by == $article->id)
+                              <?php $nrOfComments++; ?>
+                            @endif
+                          @endforeach
+                          | <a href="comments/{{$article->id}}">{{$nrOfComments}} comments</a>
+                        </div>
+                      @endif
+                    @endforeach
 
                    @foreach ($comments as $comment)
-                     <div class="comments">
-                       <ul>
-                         <li>
-                             <div class="comment-body">{{$comment->comment}}</div>
-                             <div class="comment-info">
-                                 Posted by {{$comment->name}} on {{$comment->created_at}}
-                             </div>
-                         </li>
-                       </ul>
-                    </div>
+                     @if($article->id == $comments->post_id)
+                       <div class="comments">
+                         <ul>
+                           <li>
+                               <div class="comment-body">{{$comment->comment}}</div>
+                               <div class="comment-info">
+                                   Posted by {{$comment->name}} on {{$comment->created_at}}
+                               </div>
+                             </li>
+                           </ul>
+                        </div>
+                      @endif
                     @endforeach
                     <form action="./add/{{$article->id}}" method="POST" class="form-horizontal">
                     {{ csrf_field() }}

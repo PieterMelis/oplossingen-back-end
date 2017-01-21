@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Article;
+use App\User;
+use Auth;
 
 class CommentController extends Controller
 {
@@ -13,10 +15,20 @@ class CommentController extends Controller
   public function index(Request $request,$id)
      {
 
-       $article = Article::findOrFail($id);
-       $comments = Comment::all();
-
-       return view("comments/comment", compact('article', 'comments'));
+       $article = Article::all();
+       $comment = Comment::all();
+       $user = User::all();
+       $comment->name = $request->name;
+       $comment->post_id = $request->id;
+       $comment->comment = $comment[$id]->comment;
+       $article->id = $id;
+       $article->url = $request->url;
+       $article->title = $request->title;
+       $article->posted_by = $request->name;
+       $article->votes = 1;
+       return view("comments/comment")
+         ->withArticles($article)
+         ->withComments($comment);
      }
 
      public function create(Request $request)

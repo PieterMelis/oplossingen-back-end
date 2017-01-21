@@ -26,7 +26,14 @@
                     @endif
                     </div>
                     <div class="info">
-                          {{$article->votes}} points | posted by {{{$article->posted_by}}} |<a href="comments/{{$article->id}}"> comments</a>
+                          {{$article->votes}} points | posted by {{{$article->posted_by}}}
+                          <?php $nrOfComments = 0 ;?>
+                      @foreach($comments as $comment)
+                        @if($comment->posted_by == $article->id)
+                          <?php $nrOfComments++; ?>
+                        @endif
+                      @endforeach
+                      | <a href="comments/{{$article->id}}">{{$nrOfComments}} comments</a>
                     </div>
                   @endforeach
                   @else
