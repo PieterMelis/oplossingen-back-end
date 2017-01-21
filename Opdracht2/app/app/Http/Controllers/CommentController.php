@@ -34,13 +34,15 @@ class CommentController extends Controller
 
      public function create(Request $request)
      {
+        $user = User::all();
+
           $validator = Validator::make($request->all(), [
               'comment' => 'required|max:255'
           ]);
 
 
           $comment = new Comment;
-          $comment->name = "pieter";
+          $comment->name = Auth::user()->name;;
           $comment->comment = $request->comment;
           $comment->posted_article = $request->id;
           $comment->posted_by = 1;

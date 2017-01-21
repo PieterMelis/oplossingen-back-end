@@ -38,7 +38,7 @@
                               <?php $nrOfComments++; ?>
                             @endif
                           @endforeach
-                          | <a href="comments/{{$article->id}}">{{$nrOfComments}} comments</a>
+                          | <a href="comments/{{$article->id}}">{{$nrOfComments}}@if($nrOfComments > 1 && $nrOfComments < 1) comment @else comments @endif</a>
                         </div>
                       @endif
                     @endforeach
