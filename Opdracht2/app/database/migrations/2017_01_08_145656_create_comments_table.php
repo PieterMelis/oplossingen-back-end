@@ -17,7 +17,6 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('comment');
-            $table->integer('posted_by')->unsigned();
             $table->integer('posted_article')->unsigned();
             $table->timestamps();
         });

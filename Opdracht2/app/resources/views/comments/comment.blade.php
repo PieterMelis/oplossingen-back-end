@@ -46,18 +46,21 @@
 
                    @foreach ($comments as $comment)
                      @if($article->id == $comments->posted_article)
-                       <div class="comments">
-                         <ul>
-                           <li>
-                               <div class="comment-body">{{$comment->comment}}</div>
-                               <div class="comment-info">
-                                   Posted by {{$comment->name}} on {{$comment->created_at}}
-                               </div>
-                             </li>
-                           </ul>
-                        </div>
-                      @endif
-                    @endforeach
+
+
+                         <div class="comments">
+                           <ul>
+                             <li>
+                                 <div class="comment-body">{{$comment->comment}}</div>
+                                 <div class="comment-info">
+                                     Posted by {{$comment->name}} on {{$comment->created_at}}
+                                 </div>
+                               </li>
+                             </ul>
+                          </div>
+                        @endif
+
+                    @endforeach 
                     <form action="./add/{{$article->id}}" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
