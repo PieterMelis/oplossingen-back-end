@@ -20,7 +20,6 @@ class CommentController extends Controller
        $user = User::all();
        $comment->name = $request->name;
        $comment->post_id = $request->id;
-       $comment->comment = $comment[$id]->comment;
        $article->id = $id;
        $article->url = $request->url;
        $article->title = $request->title;
