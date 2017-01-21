@@ -6,17 +6,7 @@
         <div class="container">
             <div class="row">
         <div class="col-md-8 col-md-offset-2">
-         <div class="bg-danger clearfix">
-             Are you sure you want to delete this article?
-             <form action="{{$article->id}}/delete" method="POST" class="pull-right">
-                 <button name="delete" class="btn btn-danger" value="{{$article->id}}">
-                     <i class="fa fa-btn fa-trash" title="delete"></i> confirm delete
-                 </button>
-                 <button name="cancel" class="btn" value="{{$article->id}}">
-                     <i class="fa fa-btn fa-trash" title="delete"></i> cancel
-                 </button>
-             </form>
-         </div>
+
             <div class="breadcrumb">
                <a href="/">← back to overview</a>
             </div>

@@ -26,9 +26,9 @@
                           <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
                           @if(isset(Auth::user()->name))
                             @if(Auth::user()->name == $article->posted_by)
-                          <a href="articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
-                        @endif
-                        @endif
+                          <a href="../articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                            @endif
+                          @endif
                         </div>
                         <div class="info">
                               {{$article->votes}} points | posted by {{{$article->posted_by}}}
@@ -39,7 +39,7 @@
                             @endif
                           @endforeach
                           | <a href="comments/{{$article->id}}">{{$nrOfComments}}
-                            @if($nrOfComments > 1 && $nrOfComments < 1) comment @else comments @endif</a>
+                            @if($nrOfComments == 1) comment @else comments @endif</a>
                         </div>
 
 
