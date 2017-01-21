@@ -15,20 +15,20 @@ class CommentController extends Controller
   public function index(Request $request,$id)
      {
 
-       $article = Article::all();
+       $articles = Article::all();
        $comment = Comment::all();
        $user = User::all();
-       
-       $comment->name = $request->name;
-       $comment->post_id = $request->id;
 
-       $article->id = $id;
-       $article->url = $request->url;
-       $article->title = $request->title;
-       $article->posted_by = $request->name;
-       $article->votes = 1;
+       $comment->name = $request->name;
+       $comment->posted_atricle = $request->id;
+
+       $articles->id = $id;
+       $articles->url = $request->url;
+       $articles->title = $request->title;
+       $articles->posted_by = $request->name;
+       $articles->votes = 1;
        return view("comments/comment")
-         ->withArticles($article)
+         ->withArticles($articles)
          ->withComments($comment);
      }
 

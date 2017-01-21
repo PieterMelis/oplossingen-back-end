@@ -12,7 +12,7 @@
                   @if(Auth::user())
 
                     @foreach ($articles as $article)
-                      @if($article->id == $comments->post_id)
+                      @if($article->id == $comments->posted_atricle)
 
                       <div class="url">
                         <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
@@ -36,7 +36,7 @@
                     @endforeach
 
                    @foreach ($comments as $comment)
-                     @if($article->id == $comments->post_id)
+                     @if($article->id == $comments->posted_atricle)
                        <div class="comments">
                          <ul>
                            <li>
