@@ -12,21 +12,29 @@
                   @if(Auth::user())
 
                     @foreach ($articles as $article)
-                      @if($article->id == $comments->posted_atricle)
+                      @if($article->id == $comments->posted_article)
 
-                      <div class="url">
-                        <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+                        <div class="vote">
+                         <div class="form-inline upvote"><button class="up-down">
+                             <i class="fa fa-caret-up"></i></button>&nbsp;
+                         </div>
+                         <div class="form-inline downvote"><button class="up-down">
+                            <i class="fa fa-caret-down"></i></button>&nbsp;
+                         </div>
+                       </div>
+                        <div class="url">
+                          <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
                           @if(isset(Auth::user()->name))
                             @if(Auth::user()->name == $article->posted_by)
                           <a href="articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
-                            @endif
-                          @endif
+                        @endif
+                        @endif
                         </div>
                         <div class="info">
                               {{$article->votes}} points | posted by {{{$article->posted_by}}}
                               <?php $nrOfComments = 0 ;?>
                           @foreach($comments as $comment)
-                            @if($comment->posted_by == $article->id)
+                            @if($comment->posted_article == $article->id)
                               <?php $nrOfComments++; ?>
                             @endif
                           @endforeach
@@ -36,7 +44,7 @@
                     @endforeach
 
                    @foreach ($comments as $comment)
-                     @if($article->id == $comments->posted_atricle)
+                     @if($article->id == $comments->posted_article)
                        <div class="comments">
                          <ul>
                            <li>

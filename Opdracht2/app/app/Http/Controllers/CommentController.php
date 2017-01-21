@@ -20,7 +20,7 @@ class CommentController extends Controller
        $user = User::all();
 
        $comment->name = $request->name;
-       $comment->posted_atricle = $request->id;
+       $comment->posted_article = $request->id;
 
        $articles->id = $id;
        $articles->url = $request->url;
@@ -42,6 +42,7 @@ class CommentController extends Controller
           $comment = new Comment;
           $comment->name = "pieter";
           $comment->comment = $request->comment;
+          $comment->posted_article = $request->id;
           $comment->posted_by = 1;
           $comment->save();
 

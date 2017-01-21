@@ -29,7 +29,7 @@
                           {{$article->votes}} points | posted by {{{$article->posted_by}}}
                           <?php $nrOfComments = 0 ;?>
                       @foreach($comments as $comment)
-                        @if($comment->posted_by == $article->id)
+                        @if($comment->posted_article == $article->id)
                           <?php $nrOfComments++; ?>
                         @endif
                       @endforeach
