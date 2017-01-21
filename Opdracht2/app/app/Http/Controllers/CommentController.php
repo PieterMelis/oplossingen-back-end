@@ -32,7 +32,7 @@ class CommentController extends Controller
          ->withComments($comment);
      }
 
-     public function create(Request $request)
+     public function create(Request $request, $id)
      {
         $user = User::all();
 
@@ -42,10 +42,9 @@ class CommentController extends Controller
 
 
           $comment = new Comment;
-          $comment->name = Auth::user()->name;;
+          $comment->name = Auth::user()->name;
           $comment->comment = $request->comment;
-          $comment->posted_article = $request->id;
-          $comment->posted_by = 1;
+          $comment->posted_article = $id;
           $comment->save();
 
           return redirect()->back();
