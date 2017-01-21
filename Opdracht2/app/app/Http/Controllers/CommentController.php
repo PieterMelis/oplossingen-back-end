@@ -18,8 +18,10 @@ class CommentController extends Controller
        $article = Article::all();
        $comment = Comment::all();
        $user = User::all();
+       
        $comment->name = $request->name;
        $comment->post_id = $request->id;
+
        $article->id = $id;
        $article->url = $request->url;
        $article->title = $request->title;

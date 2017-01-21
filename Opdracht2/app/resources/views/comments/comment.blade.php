@@ -13,6 +13,7 @@
 
                     @foreach ($articles as $article)
                       @if($article->id == $comments->post_id)
+
                       <div class="url">
                         <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
                           @if(isset(Auth::user()->name))
