@@ -26,14 +26,42 @@ Route::get('articles/edit/{id}', 'ArticleController@edit');
 
 Route::post('articles/edit/{id}', 'ArticleController@update');
 
-
-
 Route::get('articles/edit/{id}/delete', 'ArticleController@delete');
 
 Route::post('articles/edit/{id}/delete', 'ArticleController@delete');
 
 
+
+
+
 Route::get('/comments/{id}', 'CommentController@index');
 
 Route::post('/comments/add/{id}', 'CommentController@create');
+
+Route::get('comments/edit/{id}', 'CommentController@edit');
+
+Route::post('comments/edit/{id}', 'CommentController@update');
+
+Route::get('comments/delete/{id}', 'CommentController@delete');
+
+Route::post('comments/delete/{id}', 'CommentController@delete');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

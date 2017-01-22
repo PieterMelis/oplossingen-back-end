@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->integer('posted_article')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     /**

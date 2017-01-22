@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Article overview</div>
-                @include("E.errors")
+
                 <div class="panel-body">
 
                   @if(Auth::user())
@@ -50,6 +50,8 @@
                               <ul>
                                 <li>
                                     <div class="comment-body">{{$comment->comment}}</div>
+                                    <a href="../comment/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                    <a href="../comment/delete{{$article->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
                                     <div class="comment-info">
                                         Posted by {{$comment->name}} on {{$comment->created_at}}
                                     </div>

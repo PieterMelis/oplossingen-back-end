@@ -50,6 +50,29 @@ class CommentController extends Controller
           return redirect()->back();
 
      }
+     public function edit($id)
+     {
+        $comment = Comment::findOrFail($id);
+
+       return view("comment/edit", compact('comment'));
+
+     }
+     public function update(Request $request, $id)
+     {
+       $comment = Comment::findOrFail($id);
+
+       $comment->update($request->all());
+       return redirect()->back();
+
+     }
+     public function delete(Request $request, $id)
+     {
+       $comment = Article::findOrFail($id);
+
+       $comment->delete($request->all());
+       return redirect()->back();
+
+     }
 
 
 
