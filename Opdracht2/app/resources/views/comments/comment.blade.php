@@ -50,10 +50,9 @@
                               <ul>
                                 <li>
                                     <div class="comment-body">{{$comment->comment}}</div>
-                                    <a href="../comment/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
-                                    <a href="../comment/delete{{$article->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
-                                    <div class="comment-info">
-                                        Posted by {{$comment->name}} on {{$comment->created_at}}
+                                    <a href="edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                    <a href="delete/{{$article->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
+                                    <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
                                     </div>
                                   </li>
                                 </ul>

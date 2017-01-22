@@ -54,7 +54,7 @@ class CommentController extends Controller
      {
         $comment = Comment::findOrFail($id);
 
-       return view("comment/edit", compact('comment'));
+       return view("comments/edit", compact('comment'));
 
      }
      public function update(Request $request, $id)

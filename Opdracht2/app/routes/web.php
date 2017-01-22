@@ -38,9 +38,11 @@ Route::get('/comments/{id}', 'CommentController@index');
 
 Route::post('/comments/add/{id}', 'CommentController@create');
 
+
 Route::get('comments/edit/{id}', 'CommentController@edit');
 
 Route::post('comments/edit/{id}', 'CommentController@update');
+
 
 Route::get('comments/delete/{id}', 'CommentController@delete');
 
