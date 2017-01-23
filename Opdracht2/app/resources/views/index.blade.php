@@ -10,12 +10,21 @@
                   @if(Auth::user())
                   @foreach ($articles as $article)
                     <div class="vote">
-                     <div class="form-inline upvote"><button class="up-down">
-                         <i class="fa fa-caret-up"></i></button>&nbsp;
-                     </div>
-                     <div class="form-inline downvote"><button class="up-down">
-                        <i class="fa fa-caret-down"></i></button>&nbsp;
-                     </div>
+                      <form  action="articles/votes/up/{{$article->id}}" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-inline upvote"><button class="up-down">
+                            <a href="articles/votes/up" ><i class="fa fa-caret-up"></i></a></button>&nbsp;
+                        </div>
+                      </form>
+                      <form  action="articles/votes/down/{{$article->id}}" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-inline downvote"><button class="up-down">
+                           <a href="articles/votes/down"><i class="fa fa-caret-down"></i></a></button>&nbsp;
+                        </div>
+                      </form>
+
                    </div>
                     <div class="url">
                       <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>

@@ -74,4 +74,21 @@ class ArticleController  extends Controller
 
       return redirect('/');
     }
+
+    public function up($id , Request $request)
+    {
+      $article = Article::findOrFail($id);
+
+      $article->votes += 1;
+      $article->update($request->all());
+       return redirect('/');
+    }
+    public function down($id , Request $request)
+    {
+      $article = Article::findOrFail($id);
+
+      $article->votes -= 1;
+      $article->update($request->all());
+       return redirect('/');
+    }
 }
