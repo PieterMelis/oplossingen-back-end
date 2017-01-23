@@ -30,8 +30,8 @@ Route::get('articles/edit/{id}/delete', 'ArticleController@delete');
 
 Route::post('articles/edit/{id}/delete', 'ArticleController@delete');
 
-Route::post('articles/votes/up/{id}', 'ArticleController@up');
-Route::post('articles/votes/down/{id}', 'ArticleController@down');
+Route::post('/votes/up/{id}', 'ArticleController@up');
+Route::post('/votes/down/{id}', 'ArticleController@down');
 
 
 Route::get('/comments/{id}', 'CommentController@index');

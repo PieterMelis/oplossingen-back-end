@@ -15,12 +15,21 @@
                       @if($article->id == $comments->posted_article)
 
                         <div class="vote">
-                         <div class="form-inline upvote"><button class="up-down">
-                             <i class="fa fa-caret-up"></i></button>&nbsp;
-                         </div>
-                         <div class="form-inline downvote"><button class="up-down">
-                            <i class="fa fa-caret-down"></i></button>&nbsp;
-                         </div>
+                          <form  action="/votes/up/{{$article->id}}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="form-inline upvote"><button class="up-down">
+                                <a href="/votes/up" ><i class="fa fa-caret-up"></i></a></button>&nbsp;
+                            </div>
+                          </form>
+                          <form  action="/votes/down/{{$article->id}}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="form-inline downvote"><button class="up-down">
+                               <a href="/votes/down"><i class="fa fa-caret-down"></i></a></button>&nbsp;
+                            </div>
+                          </form>
+
                        </div>
                         <div class="url">
                           <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>

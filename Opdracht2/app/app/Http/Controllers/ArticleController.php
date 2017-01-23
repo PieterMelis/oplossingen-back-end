@@ -16,11 +16,7 @@ class ArticleController  extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-      $articles = Article::all();
-      return view('/')->withArticles($articles);
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -81,7 +77,7 @@ class ArticleController  extends Controller
 
       $article->votes += 1;
       $article->update($request->all());
-       return redirect('/');
+       return redirect()->back();
     }
     public function down($id , Request $request)
     {
@@ -89,6 +85,6 @@ class ArticleController  extends Controller
 
       $article->votes -= 1;
       $article->update($request->all());
-       return redirect('/');
+      return redirect()->back();
     }
 }

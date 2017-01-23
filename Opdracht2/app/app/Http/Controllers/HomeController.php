@@ -27,11 +27,12 @@ class HomeController extends Controller
      */
      public function index(request $request)
      {
+
+       $article = Article::all()->sortByDesc("votes");
        $user = User::all();
-       $article = Article::all();
        $comment = Comment::all();
 
-       $article->votes = 1;
+
        $user->name = $request->name;
        return view('index')
        ->withArticles($article)
