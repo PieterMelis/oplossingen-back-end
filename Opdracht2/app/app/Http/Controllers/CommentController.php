@@ -61,8 +61,15 @@ class CommentController extends Controller
      public function update(Request $request, $id)
      {
        $comment = Comment::findOrFail($id);
-
+       $comment->comment = $request->comment;;
        $comment->update($request->all());
+       return redirect()->back();
+     }
+     public function del(Request $request, $id)
+     {
+       $comment = Comment::findOrFail($id);
+
+      return view("comments/del", compact('comment'));
 
      }
      public function delete(Request $request, $id)
@@ -70,7 +77,7 @@ class CommentController extends Controller
        $comment = Comment::findOrFail($id);
 
        $comment->delete($request->all());
-
+       return redirect('/');
      }
 
 

@@ -26,7 +26,7 @@
                           <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
                           @if(isset(Auth::user()->name))
                             @if(Auth::user()->name == $article->posted_by)
-                          <a href="../articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                              <a href="../articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
                             @endif
                           @endif
                         </div>
@@ -50,8 +50,8 @@
                               <ul>
                                 <li>
                                     <div class="comment-body">{{$comment->comment}}</div>
-                                    <a href="edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
-                                    <a href="delete/{{$article->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
+                                    <a href="edit/{{$comment->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                    <a href="del/{{$comment->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
                                     <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
                                     </div>
                                   </li>

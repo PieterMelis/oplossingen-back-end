@@ -44,9 +44,9 @@ Route::get('comments/edit/{id}', 'CommentController@edit');
 Route::post('comments/edit/{id}', 'CommentController@update');
 
 
-Route::get('comments/delete/{id}', 'CommentController@delete');
+Route::get('comments/del/{id}', 'CommentController@del');
 
-Route::post('comments/delete/{id}', 'CommentController@delete');
+Route::get('comments/del/{id}/delete', 'CommentController@delete');
 
 
 
