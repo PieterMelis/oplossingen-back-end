@@ -36,9 +36,10 @@ class CommentController extends Controller
      {
         $user = User::all();
 
-          $validator = Validator::make($request->all(), [
-              'comment' => 'required|max:255'
-          ]);
+        $this->validate($request, [
+        'comment' => 'required|max:255',
+    ]);
+
 
 
           $comment = new Comment;
@@ -62,15 +63,13 @@ class CommentController extends Controller
        $comment = Comment::findOrFail($id);
 
        $comment->update($request->all());
-       return redirect()->back();
 
      }
      public function delete(Request $request, $id)
      {
-       $comment = Article::findOrFail($id);
+       $comment = Comment::findOrFail($id);
 
        $comment->delete($request->all());
-       return redirect()->back();
 
      }
 

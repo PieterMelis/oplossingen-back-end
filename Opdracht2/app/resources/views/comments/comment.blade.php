@@ -83,7 +83,35 @@
 
 
                   @else
-                  Not logged in!
+
+                    @foreach ($articles as $article)
+                      @foreach($comments as $comment)
+                        @if($comment->posted_article == $article->id)
+
+                          <div class="vote">
+                           <div class="form-inline upvote"><button class="up-down">
+                               <i class="fa fa-caret-up"></i></button>&nbsp;
+                           </div>
+                           <div class="form-inline downvote"><button class="up-down">
+                              <i class="fa fa-caret-down"></i></button>&nbsp;
+                           </div>
+                         </div>
+                          <div class="url">
+                            <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+
+                          <div class="comments">
+                            <ul>
+                              <li>
+                                  <div class="comment-body">{{$comment->comment}}</div>
+                                  <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
+                                  </div>
+                                </li>
+                              </ul>
+                           </div>
+                        @endif
+                      @endforeach
+                      @endforeach
+
                   @endif
 
                 </div>

@@ -50,7 +50,14 @@
                         <a href="{{$article->url}}" class="urlTitle"><h3>{{$article->title}}</h3></a>
                       </div>
                       <div class="info">
-                        {{$article->votes}} points | posted by {{{$article->posted_by}}} |<a href="comments/{{$article->id}}"> comments</a>
+                            {{$article->votes}} points | posted by {{{$article->posted_by}}}
+                            <?php $nrOfComments = 0 ;?>
+                        @foreach($comments as $comment)
+                          @if($comment->posted_article == $article->id)
+                            <?php $nrOfComments++; ?>
+                          @endif
+                        @endforeach
+                        | <a href="comments/{{$article->id}}">{{$nrOfComments}} @if($nrOfComments == 1) comment @else comments @endif</a>
                       </div>
                      @endforeach
                   @endif
