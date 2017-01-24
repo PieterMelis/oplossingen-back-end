@@ -28,10 +28,8 @@ class ArticleController  extends Controller
              'title' => 'required|max:255',
              'url' => 'required|max:255'
          ]);
-         if ($validator->fails()) {
-             return redirect('/articles/add')
-                 ->withErrors($validator);
-         }
+
+        
          $article = new Article;
          $article->title = $request->title;
          $article->url = $request->url;

@@ -7,6 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add article </div>
                 @if(Auth::user())
+
                   <div class="panel-body">
                    <form action="/articles/add" method="POST" class="form-horizontal">
                       {!! csrf_field() !!}
