@@ -11,6 +11,7 @@ use resources\views\articles;
 use App\User;
 class ArticleController  extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +27,14 @@ class ArticleController  extends Controller
     {
          $validator = Validator::make($request->all(), [
              'title' => 'required|max:255',
-             'url' => 'required|max:255'
+             'url' => 'required|min:8'
          ]);
 
-        
+         if ($validator->fails()) {
+           return view('/articles/add')
+           -> withError($validator);
+         }
+
          $article = new Article;
          $article->title = $request->title;
          $article->url = $request->url;
@@ -56,7 +61,15 @@ class ArticleController  extends Controller
     public function update($id, Request $request)
     {
       $article = Article::findOrFail($id);
+      $validator = Validator::make($request->all(), [
+          'title' => 'required|max:255',
+          'url' => 'required|min:8'
+      ]);
 
+      if ($validator->fails()) {
+        return redirect()->back()
+        -> withError($validator);
+      }
       $article->update($request->all());
        return redirect('/');
     }
@@ -71,18 +84,23 @@ class ArticleController  extends Controller
 
     public function up($id , Request $request)
     {
+      $oneVote;
       $article = Article::findOrFail($id);
 
-      $article->votes += 1;
-      $article->update($request->all());
-       return redirect()->back();
+
+        $article->votes += 1;
+        $article->update($request->all());
+
+      return redirect()->back();
     }
     public function down($id , Request $request)
     {
       $article = Article::findOrFail($id);
 
-      $article->votes -= 1;
-      $article->update($request->all());
+        $oneVote = false;
+        $article->votes -= 1;
+        $article->update($request->all());
+
       return redirect()->back();
     }
 }

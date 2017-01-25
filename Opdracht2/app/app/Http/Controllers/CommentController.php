@@ -36,11 +36,14 @@ class CommentController extends Controller
      {
         $user = User::all();
 
-        $this->validate($request, [
-        'comment' => 'required|max:255',
-    ]);
+        $validator = Validator::make($request->all(), [
+            'comment' => 'required|max:255'
+        ]);
 
-
+        if ($validator->fails()) {
+          return redirect()->back()
+          -> withError($validator);
+        }
 
           $comment = new Comment;
           $comment->name = Auth::user()->name;
@@ -61,7 +64,15 @@ class CommentController extends Controller
      public function update(Request $request, $id)
      {
        $comment = Comment::findOrFail($id);
-       $comment->comment = $request->comment;;
+       $comment->comment = $request->comment;
+       $validator = Validator::make($request->all(), [
+           'comment' => 'required|max:255'
+       ]);
+
+       if ($validator->fails()) {
+         return redirect()->back()
+         -> withError($validator);
+       }
        $comment->update($request->all());
        return redirect()->back();
      }
