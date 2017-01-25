@@ -60,10 +60,10 @@
                                 <li>
                                     <div class="comment-body">{{$comment->comment}}</div>
                                     @if(isset(Auth::user()->name))
-                                    @if(Auth::user()->name == $article->posted_by)
-                                    <a href="edit/{{$comment->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
-                                    <a href="del/{{$comment->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
-                                    @endif
+                                      @if(Auth::user()->name == $comment->name)
+                                      <a href="edit/{{$comment->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                      <a href="del/{{$comment->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
+                                      @endif
                                     @endif
                                     <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
                                     </div>
