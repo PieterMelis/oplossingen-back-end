@@ -64,17 +64,18 @@ class CommentController extends Controller
      public function update(Request $request, $id)
      {
        $comment = Comment::findOrFail($id);
-       $comment->comment = $request->comment;
+
        $validator = Validator::make($request->all(), [
            'comment' => 'required|max:255'
        ]);
 
        if ($validator->fails()) {
-         return redirect()->back()
+          return redirect()->back()
          -> withError($validator);
        }
+       $comment->comment = $request->comment;
        $comment->update($request->all());
-       return redirect()->back();
+       return redirect('/');
      }
      public function del(Request $request, $id)
      {

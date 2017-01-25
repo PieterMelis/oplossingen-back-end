@@ -19,14 +19,14 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-inline upvote"><button class="up-down">
-                                <a href="/votes/up" ><i class="fa fa-caret-up"></i></a></button>&nbsp;
+                                <i class="fa fa-caret-up"></i></button>&nbsp;
                             </div>
                           </form>
                           <form  action="/votes/down/{{$article->id}}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-inline downvote"><button class="up-down">
-                               <a href="/votes/down"><i class="fa fa-caret-down"></i></a></button>&nbsp;
+                               <i class="fa fa-caret-down"></i></button>&nbsp;
                             </div>
                           </form>
 
@@ -59,8 +59,12 @@
                               <ul>
                                 <li>
                                     <div class="comment-body">{{$comment->comment}}</div>
+                                    @if(isset(Auth::user()->name))
+                                    @if(Auth::user()->name == $article->posted_by)
                                     <a href="edit/{{$comment->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
                                     <a href="del/{{$comment->id}}" class="btn btn-danger btn-xs edit-btn">delete</a>
+                                    @endif
+                                    @endif
                                     <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
                                     </div>
                                   </li>
@@ -93,33 +97,66 @@
 
                   @else
 
+
                     @foreach ($articles as $article)
-                      @foreach($comments as $comment)
-                        @if($comment->posted_article == $article->id)
+                      @if($article->id == $comments->posted_article)
 
-                          <div class="vote">
-                           <div class="form-inline upvote"><button class="up-down">
-                               <i class="fa fa-caret-up"></i></button>&nbsp;
-                           </div>
-                           <div class="form-inline downvote"><button class="up-down">
-                              <i class="fa fa-caret-down"></i></button>&nbsp;
-                           </div>
-                         </div>
-                          <div class="url">
-                            <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+                        <div class="vote">
 
-                          <div class="comments">
-                            <ul>
-                              <li>
-                                  <div class="comment-body">{{$comment->comment}}</div>
-                                  <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
-                                  </div>
-                                </li>
-                              </ul>
-                           </div>
-                        @endif
-                      @endforeach
-                      @endforeach
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="form-inline upvote"><button class="up-down disabled" disabled>
+                                <i class="fa fa-caret-up"></i></button>&nbsp;
+                            </div>
+
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="form-inline downvote"><button class="up-down disabled" disabled>
+                               <i class="fa fa-caret-down"></i></button>&nbsp;
+                            </div>
+
+
+                       </div>
+                        <div class="url">
+                          <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+                          @if(isset(Auth::user()->name))
+                            @if(Auth::user()->name == $article->posted_by)
+                              <a href="../articles/edit/{{$article->id}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                            @endif
+                          @endif
+                        </div>
+                        <div class="info">
+                              {{$article->votes}} points | posted by {{{$article->posted_by}}}
+                              <?php $nrOfComments = 0 ;?>
+                          @foreach($comments as $comment)
+                            @if($comment->posted_article == $article->id)
+                              <?php $nrOfComments++; ?>
+                            @endif
+                          @endforeach
+                          | <a href="comments/{{$article->id}}">{{$nrOfComments}}
+                            @if($nrOfComments == 1) comment @else comments @endif</a>
+                        </div>
+
+
+
+                        @foreach($comments as $comment)
+                          @if($comment->posted_article == $article->id)
+                            <div class="comments">
+                              <ul>
+                                <li>
+                                    <div class="comment-body">{{$comment->comment}}</div>
+                                    <div class="comment-info"> Posted by {{$comment->name}} on {{$comment->created_at}}
+                                    </div>
+                                  </li>
+                                </ul>
+                             </div>
+                          @endif
+                        @endforeach
+
+
+                      @endif
+                    @endforeach
+
 
                   @endif
 
